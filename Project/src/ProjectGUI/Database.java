@@ -1,6 +1,7 @@
 package ProjectGUI;
 
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -33,7 +34,7 @@ public class Database {
                                 + "('suspicious of others\"; \"Annette is very outgoing\"; \"Bruce seems to be very sensitive and gets'),"
                                 + "('upset very easily over minor things\"; \"Sean has the personality of an eggplant!\" We tent to type'),"
                                 + "('people as behaving in one way in many different situations. For example, like Michael, many of'),"
-                                + "('us are shy with people we dont know, but we wont be shy around our friends. A truly shy'),"
+                                + "('us are shy with people we don''t know, but we wont be shy around our friends. A truly shy'),"
                                 + "('person is shy even among people he or she has known for some time. The shyness is part of'),"
                                 + "('the way the person behaves in most situations. We have all probably behaved in all the ways'),"
                                 + "('noted here (\"dramatic,\" \"suspicious,\" \"outgoing,\" \"easily upset\"). However, we usually consider'),"
@@ -217,10 +218,11 @@ public class Database {
 		ResultSet resultSet = statement.executeQuery(SQL_STATEMENT);
 		ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
 		int columnCount = resultSetMetaData.getColumnCount();
-		String[] question = new String[columnCount];
+		
 		ArrayList<String[]> questions = new ArrayList<String[]>();
 		while (resultSet.next())
-		{
+                {
+                    String[] question = new String[columnCount];
 			for (int x = 1; x <= columnCount; x++)
 				question[x -1] = resultSet.getString(x);
 			questions.add(question);
@@ -244,10 +246,11 @@ public class Database {
 		ResultSet resultSet = statement.executeQuery(SQL_STATEMENT);
 		ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
 		int columnCount = resultSetMetaData.getColumnCount();
-		String[] question = new String[columnCount];
+		
 		ArrayList<String[]> questions = new ArrayList<String[]>();
 		while (resultSet.next())
 		{
+                    String[] question = new String[columnCount];
 			for (int x = 1; x <= columnCount; x++)
 				question[x -1] = resultSet.getString(x);
 			questions.add(question);
