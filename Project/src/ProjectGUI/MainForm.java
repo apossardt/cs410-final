@@ -33,7 +33,6 @@ public class MainForm extends javax.swing.JFrame   {
         btnBegin = new javax.swing.JButton();
         btnManageData = new javax.swing.JButton();
         btnExport = new javax.swing.JButton();
-        btnExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Experiment Manager");
@@ -68,9 +67,6 @@ public class MainForm extends javax.swing.JFrame   {
             }
         });
 
-        btnExit.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnExit.setText("Exit");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,9 +75,8 @@ public class MainForm extends javax.swing.JFrame   {
                 .addGap(307, 307, 307)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(btnExport)
-                    .addComponent(btnManageData)
                     .addComponent(btnBegin)
-                    .addComponent(btnExit))
+                    .addComponent(btnManageData))
                 .addContainerGap(276, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -89,13 +84,11 @@ public class MainForm extends javax.swing.JFrame   {
             .addGroup(layout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addComponent(btnBegin)
-                .addGap(125, 125, 125)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
                 .addComponent(btnManageData)
-                .addGap(125, 125, 125)
+                .addGap(137, 137, 137)
                 .addComponent(btnExport)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
-                .addComponent(btnExit)
-                .addContainerGap())
+                .addGap(108, 108, 108))
         );
 
         pack();
@@ -180,7 +173,6 @@ public class MainForm extends javax.swing.JFrame   {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBegin;
-    private javax.swing.JButton btnExit;
     private javax.swing.JButton btnExport;
     private javax.swing.JButton btnManageData;
     // End of variables declaration//GEN-END:variables

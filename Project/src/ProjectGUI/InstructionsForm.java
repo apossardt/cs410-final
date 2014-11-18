@@ -152,7 +152,7 @@ public class InstructionsForm extends javax.swing.JFrame {
                 participantNumber = lsInput;
                 InstructionFormCompleteEvent();
                 
-                this.dispose();
+                //this.dispose();
             }
         }
         catch (Exception ex) {

@@ -205,6 +205,8 @@ public class PassageForm extends javax.swing.JFrame implements SMSFormListener{
     private void btnFinishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinishActionPerformed
      
         this.setVisible(false);
+        
+        this.PassageCompleteEvent();
     }//GEN-LAST:event_btnFinishActionPerformed
     
     @Override

@@ -15,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author Jonathan
  */
-public class ProjectManager implements InstructionFormListener, PassageListener,SMSFormListener {
+public class ProjectManager implements InstructionFormListener, PassageListener,SMSFormListener, QuestionFormListener {
     
     private static String dbURL = "jdbc:derby://localhost:1527/sidresDB;create=true;user=sidresAdmin;password=1x!Software";
     private static String tableName = "SMSRESULTS";
@@ -27,15 +27,13 @@ public class ProjectManager implements InstructionFormListener, PassageListener,
     private PassageForm passageFrm;
     private SMSForm smsFrm;
     private QuestionForm questionFrm;
+    private QuestionForm surveyFrm;
     private InstructionsForm instructionsFrm;
     private int smsCondition;
     
     public ProjectManager()
     {
         instructionsFrm = new InstructionsForm();
-
-        questionFrm = new QuestionForm();
-        
     }
 
     @Override
@@ -66,11 +64,23 @@ public class ProjectManager implements InstructionFormListener, PassageListener,
     @Override
     public void passageComplete(PassageResultEventArgs results)
     {
-          //  QuestionForm frm = new QuestionForm();
-            questionFrm.setLocationRelativeTo(null);
-            questionFrm.setVisible(true);
-            
-            savePassageResults();
+        savePassageResults();
+        
+        DisplayTestQuestions();
+    }
+    
+    @Override
+    public void testQuestionFormComplete(QuestionFormResults results)
+    {
+        //saveQuestionResults();
+        
+        DisplaySurveyQuestions();
+    }
+    
+    @Override
+    public void surveyQuestionFormComplete(QuestionFormResults results)
+    {
+        //saveSurveyResults();
     }
     
 
@@ -81,7 +91,7 @@ public class ProjectManager implements InstructionFormListener, PassageListener,
             smsFrm.setAlwaysOnTop(true);
             smsFrm.setLocationRelativeTo(null);
             smsFrm.requestFocus();
-             smsFrm.setStartTime();
+            smsFrm.setStartTime();
             smsFrm.setVisible(true);
             
            
@@ -138,6 +148,22 @@ public class ProjectManager implements InstructionFormListener, PassageListener,
         
         passageFrm.setVisible(true);
         passageFrm.setLocationRelativeTo(null);
+    }
+    
+    private void DisplayTestQuestions()
+    {
+        questionFrm = new QuestionForm(false, participantNumber);
+        questionFrm.addListener(this);
+        questionFrm.setVisible(true);
+        questionFrm.setLocationRelativeTo(null);
+    }
+    
+    private void DisplaySurveyQuestions() 
+    {
+        surveyFrm = new QuestionForm(true, participantNumber);
+        surveyFrm.addListener(this);
+        surveyFrm.setVisible(true);
+        surveyFrm.setLocationRelativeTo(null);
     }
     
 }

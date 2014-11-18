@@ -6,7 +6,13 @@
 package ProjectGUI;
 
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import javax.swing.BorderFactory;
+import java.util.ArrayList;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -14,12 +20,24 @@ import javax.swing.BorderFactory;
  */
 public class QuestionForm extends javax.swing.JFrame {
     public boolean gfIsMultipleChoice;
+    private boolean gfIsSurvey;
 
     /**
      * Creates new form QuestionForm
      */
     public QuestionForm() {
         initComponents();
+    }
+    
+    public QuestionForm(boolean afIsSurvey, String asParticipantNo)
+    {
+        initComponents();
+        
+        // Are these test questions (testing user on the reading) or demographic/survey?
+        gfIsSurvey = afIsSurvey;
+        
+        // Participant Number
+        ParticipantNumber = asParticipantNo;
     }
 
     /**
@@ -34,13 +52,14 @@ public class QuestionForm extends javax.swing.JFrame {
         btnGroup = new javax.swing.ButtonGroup();
         lblQuestion = new javax.swing.JLabel();
         btnNext = new javax.swing.JButton();
-        btnShowTextQuestion = new javax.swing.JButton();
         rdoAnswer1 = new javax.swing.JRadioButton();
         rdoAnswer2 = new javax.swing.JRadioButton();
         rdoAnswer3 = new javax.swing.JRadioButton();
         rdoAnswer4 = new javax.swing.JRadioButton();
         rdoAnswer5 = new javax.swing.JRadioButton();
         txtAnswer = new javax.swing.JTextField();
+        rdoAnswer6 = new javax.swing.JRadioButton();
+        lblError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -50,7 +69,7 @@ public class QuestionForm extends javax.swing.JFrame {
         });
 
         lblQuestion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblQuestion.setText("1. Which of the following is not true about personality disorders?");
+        lblQuestion.setText("lblQuestion");
 
         btnNext.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnNext.setText("Next");
@@ -60,34 +79,35 @@ public class QuestionForm extends javax.swing.JFrame {
             }
         });
 
-        btnShowTextQuestion.setText("Text Question for Demo purposes");
-        btnShowTextQuestion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnShowTextQuestionActionPerformed(evt);
-            }
-        });
-
         btnGroup.add(rdoAnswer1);
         rdoAnswer1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        rdoAnswer1.setText("a. They are marked by distress to the individual experiencing them");
+        rdoAnswer1.setText("rdoAnswer1");
 
         btnGroup.add(rdoAnswer2);
         rdoAnswer2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        rdoAnswer2.setText("b. They pervade every aspect of a person's life");
+        rdoAnswer2.setText("rdoAnswer2");
 
         btnGroup.add(rdoAnswer3);
         rdoAnswer3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        rdoAnswer3.setText("c. Affected persons respond well to psychotherapy");
+        rdoAnswer3.setText("rdoAnswer3");
 
         btnGroup.add(rdoAnswer4);
         rdoAnswer4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        rdoAnswer4.setText("d. They tend to begin in childhood");
+        rdoAnswer4.setText("rdoAnswer4");
 
         btnGroup.add(rdoAnswer5);
         rdoAnswer5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        rdoAnswer5.setText("Unused for this question");
+        rdoAnswer5.setText("rdoAnswer5");
 
         txtAnswer.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        btnGroup.add(rdoAnswer6);
+        rdoAnswer6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        rdoAnswer6.setText("rdoAnswer6");
+
+        lblError.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblError.setForeground(new java.awt.Color(255, 0, 0));
+        lblError.setText("Error Label");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,9 +116,7 @@ public class QuestionForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnShowTextQuestion)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnNext))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(42, 42, 42)
@@ -106,9 +124,11 @@ public class QuestionForm extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(rdoAnswer5)
                                         .addComponent(rdoAnswer4)
-                                        .addComponent(rdoAnswer3))
+                                        .addComponent(rdoAnswer3)
+                                        .addComponent(rdoAnswer6)
+                                        .addComponent(rdoAnswer5)
+                                        .addComponent(lblError))
                                     .addGap(128, 128, 128))
                                 .addComponent(rdoAnswer2)
                                 .addComponent(rdoAnswer1))
@@ -126,77 +146,222 @@ public class QuestionForm extends javax.swing.JFrame {
                 .addComponent(txtAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(rdoAnswer1)
-                .addGap(35, 35, 35)
+                .addGap(30, 30, 30)
                 .addComponent(rdoAnswer2)
-                .addGap(35, 35, 35)
+                .addGap(30, 30, 30)
                 .addComponent(rdoAnswer3)
-                .addGap(35, 35, 35)
+                .addGap(30, 30, 30)
                 .addComponent(rdoAnswer4)
-                .addGap(35, 35, 35)
+                .addGap(30, 30, 30)
                 .addComponent(rdoAnswer5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNext)
-                    .addComponent(btnShowTextQuestion))
+                .addGap(30, 30, 30)
+                .addComponent(rdoAnswer6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(lblError)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnNext)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void addListener(QuestionFormListener toAdd)
+    {
+        listeners.add(toAdd);
+    }
+    
+    public void QuestionFormCompleteEvent() {
+        QuestionFormResults args = new QuestionFormResults(this);
+        for (QuestionFormListener hl : listeners)
+            hl.testQuestionFormComplete(args);
+    }
+    
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         try {
-            // I'm guessing maybe include all possible controls and dynamically change text, visibility, etc.
-            // according to which type of question is currently required.
-            txtAnswer.setVisible(false);
-            rdoAnswer5.setVisible(false);
+            // Clear error label
+            lblError.setText("");
+            
+            txtAnswer.setVisible(false); // Don't show the answer textbox
+            
+            startTime = System.currentTimeMillis();
+            
+            if (!gfIsSurvey) {
+                // If it's the test questions version
+                
+                rdoAnswer6.setVisible(false); // No more than 5 answers per question for this form
+                
+                tableName = "QUESTION";
+                
+                try {
+                    Class.forName("org.apache.derby.jdbc.ClientDriver");
+                    // Get a connection
+                    conn = DriverManager.getConnection(dbURL);
+                }
+                catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                
+                try {
+                    // Select all from QUESTION table
+                    stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                    questions = stmt.executeQuery("select * from " + tableName);
+                    
+                    // Head to the beginning so that we can call GetNextQuestion();
+                    questions.beforeFirst();
+                    
+                    GetNextQuestion();
+                }
+                catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            else {
+                // Demographic survey questions
+                
+                tableName = "SURVEY";
+            }
         }
         catch (Exception ex) {
             // Log exception?
         }
     }//GEN-LAST:event_formWindowOpened
 
-    private void btnShowTextQuestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowTextQuestionActionPerformed
-        try {
-            if (!gfIsMultipleChoice) {
-                gfIsMultipleChoice = true;
-                
-                // Demo question
-                lblQuestion.setText("2. Age (in years) - please type in a number:");
-                
-                rdoAnswer1.setVisible(false);
-                rdoAnswer2.setVisible(false);
-                rdoAnswer3.setVisible(false);
-                rdoAnswer4.setVisible(false);
-                rdoAnswer5.setVisible(false);
-                txtAnswer.setVisible(true);
+    private boolean isEmpty(String input)
+    {
+        // Method allowing me to more easily check whether questions are empty, since there can be 0-6 questions
+        return input.compareTo("") == 0;
+    }
+    
+    private void AddResults() throws SQLException {
+        if (!gfIsSurvey) {
+            // Handle test results
+            
+            long llCurrentTime = System.currentTimeMillis(); // Take current time
+            double ldQuestionTime = (llCurrentTime - startTime) / 1000.0; // Subtract to get elapsed time
+            
+            // Determine selected answer
+            String lsAnswer;
+        
+            if (rdoAnswer1.isSelected()) {
+                lsAnswer = "A";
+            }
+            else if (rdoAnswer2.isSelected()) {
+                lsAnswer = "B";
+            }   
+            else if (rdoAnswer3.isSelected()) {
+                lsAnswer = "C";
+            }
+            else if (rdoAnswer4.isSelected()) {
+                lsAnswer = "D";
             }
             else {
-                gfIsMultipleChoice = false;
-                
-                // Demo question
-                lblQuestion.setText("1. Which of the following is not true about personality disorders?");
-                
-                txtAnswer.setVisible(false);
-                rdoAnswer1.setVisible(true);
-                rdoAnswer2.setVisible(true);
-                rdoAnswer3.setVisible(true);
-                rdoAnswer4.setVisible(true);
-                //rdoAnswer5.setVisible(true); // in the case of our demo question there is no fifth answer.
+                lsAnswer = "E";
             }
+            
+            // Check for correctness
+            boolean lfIsCorrect = (lsAnswer.compareTo(gsCurrentCorrectAnswer) == 0);
+            
+            // Currently an Object[] with an ArrayList to hold them, but that is subject to change, as are the contents.
+            Object[] loQuestionResult = new Object[5];
+            
+            loQuestionResult[0] = ParticipantNumber; // Participant Number should be included with all results
+            loQuestionResult[1] = questions.getInt(1); // Get the question ID
+            loQuestionResult[2] = lsAnswer; // User's answer - ask Dr. Bowman, do we need this or do we just care if it's correct?
+            loQuestionResult[3] = lfIsCorrect; // Is the user's answer correct?
+            loQuestionResult[4] = ldQuestionTime; // Elapsed time
+            
+            glResults.add(loQuestionResult); // Add the object[] to the arraylist
         }
-        catch (Exception ex) {
-            // Log exception?
+        else {
+            // Handle survey results
         }
-    }//GEN-LAST:event_btnShowTextQuestionActionPerformed
+    }
+    
+    private void GetNextQuestion() throws SQLException {
+        // Deselect the questions
+        rdoAnswer1.doClick();
+        rdoAnswer2.doClick();
+        rdoAnswer3.doClick();
+        rdoAnswer4.doClick();
+        rdoAnswer5.doClick();
+        
+        // Advance within the result set
+        questions.next();
+        
+        // Get the question, answers and correct answer from the result set
+        String lsQuestion = questions.getString(2);
+        String lsAnswerA = questions.getString(3);
+        String lsAnswerB = questions.getString(4);
+        String lsAnswerC = questions.getString(5);
+        String lsAnswerD = questions.getString(6);
+        String lsAnswerE = questions.getString(7);
+        gsCurrentCorrectAnswer = questions.getString(8);
+                    
+        // Set the question label text
+        lblQuestion.setText(lsQuestion);
+        
+        // If the answers are not empty, set their text and set them visible. Else, set them invisible.
+        if (!isEmpty(lsAnswerA.trim())) {
+            rdoAnswer1.setText(lsAnswerA);
+            rdoAnswer1.setVisible(true);
+        }
+        else {
+            rdoAnswer1.setVisible(false);
+        }
 
+        if (!isEmpty(lsAnswerB.trim())) {
+            rdoAnswer2.setText(lsAnswerB);
+            rdoAnswer2.setVisible(true);
+        }
+        else {
+            rdoAnswer2.setVisible(false);
+        }
+
+        if (!isEmpty(lsAnswerC.trim())) {
+            rdoAnswer3.setText(lsAnswerC);
+            rdoAnswer3.setVisible(true);
+        }
+        else {
+            rdoAnswer3.setVisible(false);
+        }
+
+        if (!isEmpty(lsAnswerD.trim())) {
+            rdoAnswer4.setText(lsAnswerD);
+            rdoAnswer4.setVisible(true);
+        }
+        else {
+            rdoAnswer4.setVisible(false);
+        }
+
+        if (!isEmpty(lsAnswerE.trim())) {
+            rdoAnswer5.setText(lsAnswerE);
+            rdoAnswer5.setVisible(true);
+        }
+        else {
+            rdoAnswer5.setVisible(false);
+        }
+    }
+    
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
         try {
-            // Log results of current question to Proj Manager
-            // Retrieve the next question from the DB
-            // Set displayed controls, question text, radio button text, etc. based on DB info
-            
-            // After all questions have been answered, presumably write info to DB and close the program.
+            if (!gfIsSurvey) {
+                // Ensure that an answer is selected.
+                if (rdoAnswer1.isSelected() || rdoAnswer2.isSelected() || rdoAnswer3.isSelected() || rdoAnswer4.isSelected() || rdoAnswer5.isSelected()) {
+                    AddResults();
+
+                    if (!questions.isLast())
+                        GetNextQuestion();
+                    else
+                        QuestionFormCompleteEvent();
+                }
+                else {
+                    lblError.setText("Please select an answer.");
+                }
+            }
+            else {
+                
+            }
         }
         catch (Exception ex) {
             // Log exception?
@@ -237,17 +402,33 @@ public class QuestionForm extends javax.swing.JFrame {
             }
         });
     }
+    
+    // Global variables
+    private final ArrayList<QuestionFormListener> listeners = new ArrayList();
+    private String ParticipantNumber; 
+    private long startTime;
+    private ResultSet questions;
+    private String gsCurrentCorrectAnswer;
+    private ArrayList<Object[]> glResults = new ArrayList();
+    
+    // For DB
+    private static String dbURL = "jdbc:derby://localhost:1527/sidresDB;create=true;user=sidresAdmin;password=1x!Software";
+    private static String tableName;
+    // jdbc Connection
+    private static Connection conn = null;
+    private static Statement stmt = null;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btnGroup;
     private javax.swing.JButton btnNext;
-    private javax.swing.JButton btnShowTextQuestion;
+    private javax.swing.JLabel lblError;
     private javax.swing.JLabel lblQuestion;
     private javax.swing.JRadioButton rdoAnswer1;
     private javax.swing.JRadioButton rdoAnswer2;
     private javax.swing.JRadioButton rdoAnswer3;
     private javax.swing.JRadioButton rdoAnswer4;
     private javax.swing.JRadioButton rdoAnswer5;
+    private javax.swing.JRadioButton rdoAnswer6;
     private javax.swing.JTextField txtAnswer;
     // End of variables declaration//GEN-END:variables
 }
