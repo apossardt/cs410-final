@@ -36,7 +36,7 @@ public class MainForm extends javax.swing.JFrame   {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Experiment Manager");
-        setMinimumSize(new java.awt.Dimension(800, 600));
+        setMinimumSize(new java.awt.Dimension(1150, 650));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -72,19 +72,19 @@ public class MainForm extends javax.swing.JFrame   {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(307, 307, 307)
+                .addGap(467, 467, 467)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(btnExport)
                     .addComponent(btnBegin)
                     .addComponent(btnManageData))
-                .addContainerGap(276, Short.MAX_VALUE))
+                .addContainerGap(466, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addComponent(btnBegin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
                 .addComponent(btnManageData)
                 .addGap(137, 137, 137)
                 .addComponent(btnExport)
@@ -106,6 +106,7 @@ public class MainForm extends javax.swing.JFrame   {
     private void btnBeginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBeginActionPerformed
         try {
             projMngr.beginInstructions();
+            this.setVisible(false);
         }
         catch (Exception ex) {
             // Log exception?

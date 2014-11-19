@@ -9,8 +9,8 @@ package ProjectGUI;
  *
  * @author Steve
  */
-public class QuestionFormResults extends java.util.EventObject {
-    public QuestionFormResults(Object source)
+public class QuestionResultEventArgs extends java.util.EventObject {
+    public QuestionResultEventArgs(Object source)
     {
         super(source);
         // to be implemented

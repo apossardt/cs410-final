@@ -50,12 +50,8 @@ public class SMSForm extends javax.swing.JDialog {
         txtMessage = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1150, 650));
         setModal(true);
-        addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtMessageFocusGained(evt);
-            }
-        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -64,8 +60,13 @@ public class SMSForm extends javax.swing.JDialog {
                 formWindowOpened(evt);
             }
         });
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtMessageFocusGained(evt);
+            }
+        });
 
-        btnSendResponse.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnSendResponse.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnSendResponse.setText("Send");
         btnSendResponse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,10 +74,10 @@ public class SMSForm extends javax.swing.JDialog {
             }
         });
 
-        txtResponse.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtResponse.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jScrollPane2.setViewportView(txtResponse);
 
-        txtMessage.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtMessage.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtMessage.setText("A Friend: What do you wanna do when you get out of here?");
         txtMessage.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -92,8 +93,8 @@ public class SMSForm extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1130, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnSendResponse)))
@@ -103,10 +104,10 @@ public class SMSForm extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnSendResponse)
                 .addContainerGap())
         );

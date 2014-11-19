@@ -11,6 +11,6 @@ package ProjectGUI;
  */
 public interface QuestionFormListener {
     
-    public void testQuestionFormComplete(QuestionFormResults results);
-    public void surveyQuestionFormComplete(QuestionFormResults results);
+    public void testQuestionFormComplete(QuestionResultEventArgs results);
+    public void surveyQuestionFormComplete(QuestionResultEventArgs results);
 }

@@ -13,6 +13,7 @@ import javax.swing.BorderFactory;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -62,6 +63,8 @@ public class QuestionForm extends javax.swing.JFrame {
         lblError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1150, 650));
+        setPreferredSize(new java.awt.Dimension(1150, 650));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -116,33 +119,31 @@ public class QuestionForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(1081, Short.MAX_VALUE)
                         .addComponent(btnNext))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(rdoAnswer4)
-                                        .addComponent(rdoAnswer3)
-                                        .addComponent(rdoAnswer6)
-                                        .addComponent(rdoAnswer5)
-                                        .addComponent(lblError))
-                                    .addGap(128, 128, 128))
-                                .addComponent(rdoAnswer2)
-                                .addComponent(rdoAnswer1))
-                            .addComponent(lblQuestion)
-                            .addComponent(txtAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 35, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(rdoAnswer4)
+                                    .addComponent(rdoAnswer3)
+                                    .addComponent(rdoAnswer6)
+                                    .addComponent(rdoAnswer5)
+                                    .addComponent(lblError))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(rdoAnswer2)
+                            .addComponent(rdoAnswer1)
+                            .addComponent(txtAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 1000, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(lblQuestion)
-                .addGap(33, 33, 33)
+                .addGap(20, 20, 20)
+                .addComponent(lblQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(rdoAnswer1)
@@ -156,7 +157,7 @@ public class QuestionForm extends javax.swing.JFrame {
                 .addComponent(rdoAnswer5)
                 .addGap(30, 30, 30)
                 .addComponent(rdoAnswer6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(lblError)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNext)
@@ -172,9 +173,16 @@ public class QuestionForm extends javax.swing.JFrame {
     }
     
     public void QuestionFormCompleteEvent() {
-        QuestionFormResults args = new QuestionFormResults(this);
+        QuestionResultEventArgs args = new QuestionResultEventArgs(this);
         for (QuestionFormListener hl : listeners)
             hl.testQuestionFormComplete(args);
+    }
+    
+    public void SurveyFormCompleteEvent() {
+        // We may want to use a separate results class for this?
+        QuestionResultEventArgs args = new QuestionResultEventArgs(this);
+        for (QuestionFormListener h1: listeners)
+            h1.surveyQuestionFormComplete(args);
     }
     
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -188,6 +196,7 @@ public class QuestionForm extends javax.swing.JFrame {
             
             if (!gfIsSurvey) {
                 // If it's the test questions version
+                this.setTitle("Questions");
                 
                 rdoAnswer6.setVisible(false); // No more than 5 answers per question for this form
                 
@@ -210,7 +219,10 @@ public class QuestionForm extends javax.swing.JFrame {
                     // Head to the beginning so that we can call GetNextQuestion();
                     questions.beforeFirst();
                     
-                    GetNextQuestion();
+                    GetNextTestQuestion();
+                
+                    JOptionPane.showMessageDialog(null, "Please answer the following questions based on the reading you just completed. Do the best you can.", 
+                            "Info", JOptionPane.INFORMATION_MESSAGE);
                 }
                 catch (SQLException ex) {
                     ex.printStackTrace();
@@ -219,7 +231,37 @@ public class QuestionForm extends javax.swing.JFrame {
             else {
                 // Demographic survey questions
                 
+                this.setTitle("Survey");
+                
                 tableName = "SURVEY";
+                
+                try {
+                    Class.forName("org.apache.derby.jdbc.ClientDriver");
+                    // Get a connection
+                    conn = DriverManager.getConnection(dbURL);
+                }
+                catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                
+                try {
+                    // Select all from QUESTION table
+                    stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                    questions = stmt.executeQuery("select * from " + tableName);
+                    
+                    // Head to the beginning so that we can call GetNextQuestion();
+                    questions.beforeFirst();
+                    
+                    GetNextSurveyQuestion();
+                    
+                    
+                    JOptionPane.showMessageDialog(null, "For all of the items in this section, please report how each statement describes your behavior, feelings or ideas." 
+                        + "\n\nPlease indicate your agreement with each of the statements using the scale provided. Please press ''next'' to advance to the next question.", 
+                        "Info", JOptionPane.INFORMATION_MESSAGE);
+                }
+                catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
             }
         }
         catch (Exception ex) {
@@ -241,7 +283,7 @@ public class QuestionForm extends javax.swing.JFrame {
             double ldQuestionTime = (llCurrentTime - startTime) / 1000.0; // Subtract to get elapsed time
             
             // Determine selected answer
-            String lsAnswer;
+            String lsAnswer = "";
         
             if (rdoAnswer1.isSelected()) {
                 lsAnswer = "A";
@@ -255,7 +297,7 @@ public class QuestionForm extends javax.swing.JFrame {
             else if (rdoAnswer4.isSelected()) {
                 lsAnswer = "D";
             }
-            else {
+            else if (rdoAnswer5.isSelected()) {
                 lsAnswer = "E";
             }
             
@@ -275,16 +317,47 @@ public class QuestionForm extends javax.swing.JFrame {
         }
         else {
             // Handle survey results
+            String lsMultipleChoiceAnswer = "";
+            String lsOpenEndedAnswer = "";
+            
+            if (rdoAnswer1.isSelected()) {
+                lsMultipleChoiceAnswer = "A";
+            }
+            else if (rdoAnswer2.isSelected()) {
+                lsMultipleChoiceAnswer = "B";
+            }   
+            else if (rdoAnswer3.isSelected()) {
+                lsMultipleChoiceAnswer = "C";
+            }
+            else if (rdoAnswer4.isSelected()) {
+                lsMultipleChoiceAnswer = "D";
+            }
+            else if (rdoAnswer5.isSelected()){
+                lsMultipleChoiceAnswer = "E";
+            }
+            else if (rdoAnswer6.isSelected()) {
+                lsMultipleChoiceAnswer = "F";
+            }
+            
+            if (txtAnswer.getText().compareTo("") != 0) {
+                lsOpenEndedAnswer = txtAnswer.getText();
+                txtAnswer.setText("");
+            }
+            
+            Object[] loQuestionResult = new Object[4];
+            
+            loQuestionResult[0] = ParticipantNumber; // Participant Number should be included with all results
+            loQuestionResult[1] = questions.getInt(1); // Get the question ID
+            loQuestionResult[2] = lsOpenEndedAnswer; // Open-ended answer
+            loQuestionResult[3] = lsMultipleChoiceAnswer; // Multiple choice answer
+            
+            glResults.add(loQuestionResult);
         }
     }
     
-    private void GetNextQuestion() throws SQLException {
+    private void GetNextTestQuestion() throws SQLException {
         // Deselect the questions
-        rdoAnswer1.doClick();
-        rdoAnswer2.doClick();
-        rdoAnswer3.doClick();
-        rdoAnswer4.doClick();
-        rdoAnswer5.doClick();
+        btnGroup.clearSelection();
         
         // Advance within the result set
         questions.next();
@@ -298,8 +371,8 @@ public class QuestionForm extends javax.swing.JFrame {
         String lsAnswerE = questions.getString(7);
         gsCurrentCorrectAnswer = questions.getString(8);
                     
-        // Set the question label text
-        lblQuestion.setText(lsQuestion);
+        // Set the question label text - the html tags are somewhat of a hack used to get text wrap in the label
+        lblQuestion.setText("<html>" + lsQuestion + "</html>");
         
         // If the answers are not empty, set their text and set them visible. Else, set them invisible.
         if (!isEmpty(lsAnswerA.trim())) {
@@ -343,15 +416,95 @@ public class QuestionForm extends javax.swing.JFrame {
         }
     }
     
+    private void GetNextSurveyQuestion() throws SQLException {
+        // Deselect the questions
+        btnGroup.clearSelection();
+        
+        // Advance within the result set
+        questions.next();
+        
+        // Display the appropriate prompt before the start of the demographic questions
+        if (questions.getInt(1) == 6)
+            JOptionPane.showMessageDialog(null, "Please complete the response to each question that best describes you.", 
+            "Info", JOptionPane.PLAIN_MESSAGE);
+        
+        // Get the question, answers and correct answer from the result set - the html tags are somewhat of a hack used to get text wrap in the label
+        String lsQuestion = questions.getString(2);
+        String lsAnswerA = questions.getString(3);
+        String lsAnswerB = questions.getString(4);
+        String lsAnswerC = questions.getString(5);
+        String lsAnswerD = questions.getString(6);
+        String lsAnswerE = questions.getString(7);
+        String lsAnswerF = questions.getString(8);
+                    
+        // Set the question label text
+        lblQuestion.setText("<html>" + lsQuestion + "</html>");
+        
+        if (questions.getBoolean(9))
+            txtAnswer.setVisible(true);
+        else
+            txtAnswer.setVisible(false);
+        
+        // If the answers are not empty, set their text and set them visible. Else, set them invisible.
+        if (!isEmpty(lsAnswerA.trim())) {
+            rdoAnswer1.setText(lsAnswerA);
+            rdoAnswer1.setVisible(true);
+        }
+        else {
+            rdoAnswer1.setVisible(false);
+        }
+
+        if (!isEmpty(lsAnswerB.trim())) {
+            rdoAnswer2.setText(lsAnswerB);
+            rdoAnswer2.setVisible(true);
+        }
+        else {
+            rdoAnswer2.setVisible(false);
+        }
+
+        if (!isEmpty(lsAnswerC.trim())) {
+            rdoAnswer3.setText(lsAnswerC);
+            rdoAnswer3.setVisible(true);
+        }
+        else {
+            rdoAnswer3.setVisible(false);
+        }
+
+        if (!isEmpty(lsAnswerD.trim())) {
+            rdoAnswer4.setText(lsAnswerD);
+            rdoAnswer4.setVisible(true);
+        }
+        else {
+            rdoAnswer4.setVisible(false);
+        }
+
+        if (!isEmpty(lsAnswerE.trim())) {
+            rdoAnswer5.setText(lsAnswerE);
+            rdoAnswer5.setVisible(true);
+        }
+        else {
+            rdoAnswer5.setVisible(false);
+        }
+        
+        if (!isEmpty(lsAnswerF.trim())) {
+            rdoAnswer6.setText(lsAnswerF);
+            rdoAnswer6.setVisible(true);
+        }
+        else {
+            rdoAnswer6.setVisible(false);
+        }
+    }
+    
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
         try {
+            lblError.setText("");
             if (!gfIsSurvey) {
                 // Ensure that an answer is selected.
                 if (rdoAnswer1.isSelected() || rdoAnswer2.isSelected() || rdoAnswer3.isSelected() || rdoAnswer4.isSelected() || rdoAnswer5.isSelected()) {
                     AddResults();
 
-                    if (!questions.isLast())
-                        GetNextQuestion();
+                    if (!questions.isLast()) 
+                        GetNextTestQuestion();
                     else
                         QuestionFormCompleteEvent();
                 }
@@ -360,7 +513,24 @@ public class QuestionForm extends javax.swing.JFrame {
                 }
             }
             else {
-                
+                // Check for any radio button being selected
+                if ((rdoAnswer1.isSelected() || rdoAnswer2.isSelected() || rdoAnswer3.isSelected() || rdoAnswer4.isSelected() || rdoAnswer5.isSelected() || rdoAnswer6.isSelected())
+                        // or an open-ended question with a non-blank response
+                        || (questions.getBoolean(9) && txtAnswer.getText().compareTo("") != 0)) {
+                    AddResults();
+
+                    if (!questions.isLast()) 
+                        GetNextSurveyQuestion();
+                    else {
+                        JOptionPane.showMessageDialog(null, "This concludes the experiment." 
+                            + "\n\nThank you so much for participating!", 
+                            "Info", JOptionPane.PLAIN_MESSAGE);
+                        SurveyFormCompleteEvent();
+                    }
+                }
+                else {
+                    lblError.setText("Please provide an answer.");
+                }
             }
         }
         catch (Exception ex) {

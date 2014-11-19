@@ -50,6 +50,7 @@ public class ProjectManager implements InstructionFormListener, PassageListener,
     {
         participantNumber = complete.ParticipantNumber;
         passageFrm = new PassageForm(participantNumber);
+        instructionsFrm.setVisible(false);
         smsCondition = Integer.parseInt(participantNumber.substring(0, 1));
         smsFrm = new SMSForm(passageFrm,true,smsCondition);
         smsFrm.addListener(this);
@@ -66,21 +67,27 @@ public class ProjectManager implements InstructionFormListener, PassageListener,
     {
         savePassageResults();
         
+        passageFrm.setVisible(false);
+        
         DisplayTestQuestions();
     }
     
     @Override
-    public void testQuestionFormComplete(QuestionFormResults results)
+    public void testQuestionFormComplete(QuestionResultEventArgs results)
     {
         //saveQuestionResults();
+        
+        questionFrm.setVisible(false);
         
         DisplaySurveyQuestions();
     }
     
     @Override
-    public void surveyQuestionFormComplete(QuestionFormResults results)
+    public void surveyQuestionFormComplete(QuestionResultEventArgs results) // maybe SurveyResultEventArgs?
     {
         //saveSurveyResults();
+        
+        surveyFrm.dispose();
     }
     
 

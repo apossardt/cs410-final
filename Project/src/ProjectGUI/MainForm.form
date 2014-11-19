@@ -5,7 +5,7 @@
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="Experiment Manager"/>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[800, 600]"/>
+      <Dimension value="[1150, 650]"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -31,13 +31,13 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="307" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="467" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
                   <Component id="btnExport" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="btnBegin" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="btnManageData" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="276" max="32767" attributes="0"/>
+              <EmptySpace pref="466" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -46,7 +46,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
               <Component id="btnBegin" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="162" max="32767" attributes="0"/>
+              <EmptySpace pref="212" max="32767" attributes="0"/>
               <Component id="btnManageData" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
               <Component id="btnExport" min="-2" max="-2" attributes="0"/>

@@ -61,10 +61,11 @@ public class PassageForm extends javax.swing.JFrame implements SMSFormListener{
         jScrollPane1 = new javax.swing.JScrollPane();
         txtPassage = new javax.swing.JTextPane();
         btnFinish = new javax.swing.JButton();
-        btnSMStest = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Passage");
+        setMinimumSize(new java.awt.Dimension(1150, 650));
+        setPreferredSize(new java.awt.Dimension(1150, 650));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -93,36 +94,26 @@ public class PassageForm extends javax.swing.JFrame implements SMSFormListener{
             }
         });
 
-        btnSMStest.setText("SMS Test Button for Demonstration purposes");
-        btnSMStest.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSMStestActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnSMStest)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 454, Short.MAX_VALUE)
-                        .addComponent(btnFinish)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(1063, Short.MAX_VALUE)
+                .addComponent(btnFinish)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(146, 146, 146)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 796, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 508, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnFinish)
-                    .addComponent(btnSMStest))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnFinish)
                 .addContainerGap())
         );
 
@@ -216,18 +207,6 @@ public class PassageForm extends javax.swing.JFrame implements SMSFormListener{
         if(smsCondition == 3 || smsCondition == 4)
             smsTime = results.smsTime;
     }
-
-    private void btnSMStestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSMStestActionPerformed
-        try {
-            SMSForm frm = new SMSForm(this, true,smsCondition);
-            frm.setAlwaysOnTop(true);
-            frm.setLocationRelativeTo(null);
-            frm.setVisible(true);
-        }
-        catch (Exception ex) {
-            // Log exception?
-        }
-    }//GEN-LAST:event_btnSMStestActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         int keycode = evt.getKeyCode();
@@ -349,7 +328,6 @@ private final ArrayList<PassageListener> listeners = new ArrayList<>();
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFinish;
-    private javax.swing.JButton btnSMStest;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane txtPassage;
     // End of variables declaration//GEN-END:variables
