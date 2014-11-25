@@ -9,14 +9,15 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Steve
+ * @author Jonathan
  */
-public class QuestionResultEventArgs extends java.util.EventObject {
+public class SurveyResultEventArgs extends java.util.EventObject {
     
     public ArrayList<Object[]> glResults = new ArrayList();
-    public QuestionResultEventArgs(Object source,ArrayList<Object[]> glResults)
+    public SurveyResultEventArgs(Object source,ArrayList<Object[]> glResults)
     {
         super(source);
         this.glResults=glResults;
     }
 }
+

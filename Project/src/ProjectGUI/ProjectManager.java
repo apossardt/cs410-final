@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 public class ProjectManager implements InstructionFormListener, PassageListener,SMSFormListener, QuestionFormListener {
     
     private static String dbURL = "jdbc:derby://localhost:1527/sidresDB;create=true;user=sidresAdmin;password=1x!Software";
-    private static String tableName = "SMSRESULTS";
+    //private static String tableName = "SMSRESULTS";
     // jdbc Connection
     private static Connection conn = null;
     private static Statement stmt = null;
@@ -54,7 +55,7 @@ public class ProjectManager implements InstructionFormListener, PassageListener,
         smsCondition = Integer.parseInt(participantNumber.substring(0, 1));
         smsFrm = new SMSForm(passageFrm,true,smsCondition);
         smsFrm.addListener(this);
-        passageFrm.addListener(this);
+        //passageFrm.addListener(this);
         if(smsCondition == 2)
         {
             displaySMS();
@@ -65,7 +66,7 @@ public class ProjectManager implements InstructionFormListener, PassageListener,
     @Override
     public void passageComplete(PassageResultEventArgs results)
     {
-        savePassageResults();
+        savePassageResults(results.arrowRecords);
         
         passageFrm.setVisible(false);
         
@@ -75,7 +76,7 @@ public class ProjectManager implements InstructionFormListener, PassageListener,
     @Override
     public void testQuestionFormComplete(QuestionResultEventArgs results)
     {
-        //saveQuestionResults();
+        saveQuestionResults(results.glResults);
         
         questionFrm.setVisible(false);
         
@@ -83,9 +84,9 @@ public class ProjectManager implements InstructionFormListener, PassageListener,
     }
     
     @Override
-    public void surveyQuestionFormComplete(QuestionResultEventArgs results) // maybe SurveyResultEventArgs?
+    public void surveyQuestionFormComplete(SurveyResultEventArgs results) // maybe SurveyResultEventArgs?
     {
-        //saveSurveyResults();
+        saveSurveyResults(results.glResults);
         
         surveyFrm.dispose();
     }
@@ -113,8 +114,35 @@ public class ProjectManager implements InstructionFormListener, PassageListener,
         instructionsFrm.setLocationRelativeTo(null);
     
     }
-    private void savePassageResults()
+    private void savePassageResults(List<String[]> arrowRecords)
     {
+                try
+        {
+            Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
+            //Get a connection
+            conn = DriverManager.getConnection(dbURL); 
+        }
+        catch (Exception except)
+        {
+            except.printStackTrace();
+        }
+        try
+        {
+            int id = (int) (System.currentTimeMillis()*1000);
+            for(String[] result : arrowRecords)
+            {
+                id +=2;
+                stmt = conn.createStatement();
+                stmt.execute("insert into " + "PASSAGERESULTS" + " values (" +
+                        id + ",'" + result[0]+ "'," + Integer.parseInt(result[1]) + ","+Double.parseDouble(result[2])+ ",'"+participantNumber+"')");
+                stmt.close();
+            }
+
+        }
+        catch (SQLException sqlExcept)
+        {
+            sqlExcept.printStackTrace();
+        }
     }
     private void saveSMSResults(SMSFormResults result)
     {
@@ -132,7 +160,7 @@ public class ProjectManager implements InstructionFormListener, PassageListener,
         {
             int id = (int) (System.currentTimeMillis()*1000);
             stmt = conn.createStatement();
-            stmt.execute("insert into " + tableName + " values (" +
+            stmt.execute("insert into " + "SMSRESULTS" + " values (" +
                     id + "," + result.smsTime + ",'" + result.smsText + "','"+result.smsResponse+ "',"+result.wordCount+")");
             stmt.close();
 
@@ -142,17 +170,82 @@ public class ProjectManager implements InstructionFormListener, PassageListener,
             sqlExcept.printStackTrace();
         }
     }
-    private void saveQuestionResults()
+    private void saveQuestionResults(ArrayList<Object[]> glResults)
     {
+                        try
+        {
+            Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
+            //Get a connection
+            conn = DriverManager.getConnection(dbURL); 
+        }
+        catch (Exception except)
+        {
+            except.printStackTrace();
+        }
+        try
+        {
+            int id = (int) (System.currentTimeMillis()*1000);
+            for(Object[] result : glResults)
+            {
+                id+=2;
+                stmt = conn.createStatement();
+                stmt.execute("insert into " + "QUESTIONRESULTS" + " values (" +
+                        id + ",'" + result[0]+ "'," + Integer.parseInt(result[1].toString()) + ",'"+ result[2] + "',"+Boolean.parseBoolean(result[3].toString())+ ","+Double.parseDouble(result[4].toString())+")");
+                stmt.close();
+            }
+
+        }
+        catch (SQLException sqlExcept)
+        {
+            sqlExcept.printStackTrace();
+        }
     }
-    
+        private void saveSurveyResults(ArrayList<Object[]> glResults)
+    {
+                        try
+        {
+            Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
+            //Get a connection
+            conn = DriverManager.getConnection(dbURL); 
+        }
+        catch (Exception except)
+        {
+            except.printStackTrace();
+        }
+        try
+        {
+            int id = (int) (System.currentTimeMillis()*1000);
+            for(Object[] result : glResults)
+            {
+                id+=2;
+                
+               // String openEnded = null;
+              //  String multChoice =null;
+              //  if(result[2].toString() != "")
+               //     openEnded = result[2].toString();
+                
+             //  if(result[3].toString() != "")
+             //       multChoice = result[3].toString();
+                
+                stmt = conn.createStatement();
+                stmt.execute("insert into " + "SURVEYRESULTS" + " values (" +
+                        id + ",'" + result[0]+ "'," + Integer.parseInt(result[1].toString()) + ",'"+ result[2] + "','"+result[3]+ "',"+")");
+                stmt.close();
+            }
+
+        }
+        catch (SQLException sqlExcept)
+        {
+            sqlExcept.printStackTrace();
+        }
+    }
     
     
     
     private void DisplayPassage()
     {
         
-        
+        passageFrm.addListener(this);
         passageFrm.setVisible(true);
         passageFrm.setLocationRelativeTo(null);
     }

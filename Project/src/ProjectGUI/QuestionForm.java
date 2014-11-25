@@ -173,14 +173,14 @@ public class QuestionForm extends javax.swing.JFrame {
     }
     
     public void QuestionFormCompleteEvent() {
-        QuestionResultEventArgs args = new QuestionResultEventArgs(this);
+        QuestionResultEventArgs args = new QuestionResultEventArgs(this,glResults);
         for (QuestionFormListener hl : listeners)
             hl.testQuestionFormComplete(args);
     }
     
     public void SurveyFormCompleteEvent() {
         // We may want to use a separate results class for this?
-        QuestionResultEventArgs args = new QuestionResultEventArgs(this);
+        SurveyResultEventArgs args = new SurveyResultEventArgs(this,glResults);
         for (QuestionFormListener h1: listeners)
             h1.surveyQuestionFormComplete(args);
     }
@@ -317,8 +317,8 @@ public class QuestionForm extends javax.swing.JFrame {
         }
         else {
             // Handle survey results
-            String lsMultipleChoiceAnswer = "";
-            String lsOpenEndedAnswer = "";
+            String lsMultipleChoiceAnswer = null;
+            String lsOpenEndedAnswer = null;
             
             if (rdoAnswer1.isSelected()) {
                 lsMultipleChoiceAnswer = "A";

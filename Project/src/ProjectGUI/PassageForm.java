@@ -173,7 +173,7 @@ public class PassageForm extends javax.swing.JFrame implements SMSFormListener{
     }
     public void PassageCompleteEvent()
     {
-        PassageResultEventArgs args = new PassageResultEventArgs(this);
+        PassageResultEventArgs args = new PassageResultEventArgs(this,arrowRecords);
         for(PassageListener h1:listeners)
             h1.passageComplete(args);
     }
