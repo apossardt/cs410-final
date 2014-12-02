@@ -317,8 +317,8 @@ public class QuestionForm extends javax.swing.JFrame {
         }
         else {
             // Handle survey results
-            String lsMultipleChoiceAnswer = null;
-            String lsOpenEndedAnswer = null;
+            String lsMultipleChoiceAnswer = "";
+            String lsOpenEndedAnswer = "";
             
             if (rdoAnswer1.isSelected()) {
                 lsMultipleChoiceAnswer = "A";
