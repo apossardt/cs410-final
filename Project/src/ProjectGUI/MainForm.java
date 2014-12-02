@@ -126,6 +126,8 @@ public class MainForm extends javax.swing.JFrame   {
 
     private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
         try {
+            ExportData data = new ExportData();
+            data.export();
             // Carry out the export. Current guess is:
             // Get the data from the DB; write it to Excel file of some sort.
         }
