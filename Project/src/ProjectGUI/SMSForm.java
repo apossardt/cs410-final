@@ -138,7 +138,6 @@ public class SMSForm extends javax.swing.JDialog {
             int rows = results.getRow();
             // Move to beginning
             results.beforeFirst();
-
             smsTexts=new String[rows];
             
             int counter=0;

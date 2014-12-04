@@ -1,6 +1,13 @@
 
 package ProjectGUI;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  *
  * @author Andrew
@@ -12,6 +19,7 @@ public class ImportDataForm extends javax.swing.JFrame {
      */
     public ImportDataForm() {
         initComponents();
+        getFromDB();
     }
 
     /**
@@ -52,6 +60,9 @@ public class ImportDataForm extends javax.swing.JFrame {
 
         passageTextArea.setColumns(20);
         passageTextArea.setRows(5);
+        passageTextArea.setMaximumSize(new java.awt.Dimension(300, 250));
+        passageTextArea.setMinimumSize(new java.awt.Dimension(300, 250));
+        passageTextArea.setPreferredSize(new java.awt.Dimension(300, 250));
         jScrollPane1.setViewportView(passageTextArea);
 
         passageSaveButton.setText("Save Changes");
@@ -241,7 +252,72 @@ public class ImportDataForm extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void getFromDB() {
+        String passage = "";
+        try
+        {
+            Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
+            //Get a connection
+            conn = DriverManager.getConnection(dbURL); 
+        }
+        catch (Exception except)
+        {
+            except.printStackTrace();
+        }
+        
+        try
+        {
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet results = stmt.executeQuery("select * from PASSAGETEXT");
 
+            results.beforeFirst();
+            results.first();
+            
+            passage = results.getString("PASSAGE");
+            results.close();
+            stmt.close();
+        }
+        catch (SQLException sqlExcept)
+        {
+            sqlExcept.printStackTrace();
+        }
+        
+        try
+        {
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet results = stmt.executeQuery("select * from SMSTEXT");
+            
+            results.last();
+            int rows = results.getRow();
+            // Move to beginning
+            results.beforeFirst();
+            messages=new String[rows];
+            
+            int counter=0;
+            while(results.next())
+            {
+                messages[counter]= results.getString(2);
+                counter++;
+            }
+            results.close();
+            stmt.close();
+        }
+        catch (SQLException sqlExcept)
+        {
+            sqlExcept.printStackTrace();
+        }
+        passageTextArea.setText(passage);
+        messageOneTF.setText(messages[0]);
+        messageTwoTF.setText(messages[1]);
+        messageThreeTF.setText(messages[2]);
+        messageFourTF.setText(messages[3]);
+        messageFiveTF.setText(messages[4]);
+    }
+    private static String dbURL = "jdbc:derby://localhost:1527/sidresDB;create=true;user=sidresAdmin;password=1x!Software";
+    private Statement stmt;
+    private Connection conn;
+    private String[] messages;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel changesSavedLabel;
     private javax.swing.JPanel demoQuestionsTab;

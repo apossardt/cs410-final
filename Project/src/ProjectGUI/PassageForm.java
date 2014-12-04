@@ -186,7 +186,6 @@ public class PassageForm extends javax.swing.JFrame implements SMSFormListener{
            // int rows = results.getRow();
             // Move to beginning
             results.beforeFirst();
-            
             results.first();
             
             passage =results.getString("PASSAGE");
