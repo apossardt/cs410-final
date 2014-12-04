@@ -526,6 +526,9 @@ public class QuestionForm extends javax.swing.JFrame {
                             + "\n\nThank you so much for participating!", 
                             "Info", JOptionPane.PLAIN_MESSAGE);
                         SurveyFormCompleteEvent();
+                        this.setVisible(false);
+                        MainForm mnfrm = new MainForm();
+                        mnfrm.setVisible(true);
                     }
                 }
                 else {

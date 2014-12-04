@@ -58,7 +58,15 @@ public class ProjectManager implements InstructionFormListener, PassageListener,
         //passageFrm.addListener(this);
         if(smsCondition == 2)
         {
-            displaySMS();
+            for(int i = 0; i <5; i ++)
+            {
+                displaySMS();
+                try{
+                Thread.sleep(2000);
+                }
+                catch(InterruptedException e)
+                {}
+            }
         }
         else
             DisplayPassage();
@@ -202,7 +210,7 @@ public class ProjectManager implements InstructionFormListener, PassageListener,
     }
         private void saveSurveyResults(ArrayList<Object[]> glResults)
     {
-                        try
+        try
         {
             Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
             //Get a connection
@@ -218,18 +226,11 @@ public class ProjectManager implements InstructionFormListener, PassageListener,
             for(Object[] result : glResults)
             {
                 id+=2;
-                
-               // String openEnded = null;
-              //  String multChoice =null;
-              //  if(result[2].toString() != "")
-               //     openEnded = result[2].toString();
-                
-             //  if(result[3].toString() != "")
-             //       multChoice = result[3].toString();
+
                 
                 stmt = conn.createStatement();
                 stmt.execute("insert into " + "SURVEYRESULTS" + " values (" +
-                        id + ",'" + result[0]+ "'," + Integer.parseInt(result[1].toString()) + ",'"+ result[2] + "','"+result[3]+ "',"+")");
+                        id + ",'" + result[0]+ "'," + Integer.parseInt(result[1].toString()) + ",'"+ result[2] + "','"+result[3]+ "'"+")");
                 stmt.close();
             }
 

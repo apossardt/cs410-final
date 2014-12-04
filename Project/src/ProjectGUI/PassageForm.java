@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSetMetaData;
+import java.util.StringTokenizer;
 
 /**
  *
@@ -31,16 +32,22 @@ public class PassageForm extends javax.swing.JFrame implements SMSFormListener{
         
         getPassageText();
         String initialPassage = "";
+        lines = new ArrayList<String>();
+        splitPassage(59);
+        lineCount = lines.size();
+        currentLine = 0;
         for(int i = 0; i <= 10; i++)
         {
-            initialPassage += Passage[i];
+            initialPassage += getNextTextSection();
+            currentLine++;
         }
         
         lastVisibleLine =0;
         txtPassage.setText(initialPassage);
         upCount = 0;
         downCount = 0;
-        lineCount = 11;
+       // currentLine = 11;
+        lineCount = lines.size();
         startTime = System.currentTimeMillis();
         arrowRecords = new LinkedList<String[]>();
         smsTime = 0;
@@ -48,7 +55,43 @@ public class PassageForm extends javax.swing.JFrame implements SMSFormListener{
         smsCondition = Integer.parseInt(ParticipantNumber.substring(0, 1));
         smsCounter=0;
     }
-
+   /*
+    * Method which splits the passage into lines and stores them in the lines ArrayList.
+    * 
+    * @param maxLineLength  Integer specifying the maximum length of each line.
+    */
+    private void splitPassage(int maxLineLength) {
+        
+        StringTokenizer tok = new StringTokenizer(passage, " ");
+        int lineLength = 0;
+        String word;
+        String line = "";
+        
+        while(tok.hasMoreTokens()) {
+            word = tok.nextToken();
+            
+            if(lineLength + word.length() > maxLineLength) {
+                lines.add(line);
+                line = "";
+                lineLength = 0;
+            }
+            line += word + " ";
+            lineLength += word.length();
+        }
+        lines.add(line);
+    }
+    /*
+    * Method which returns the next line of the passage.
+    * 
+    * @return   The next line in lines, or null if there are no more lines.
+    */
+    public String getNextTextSection() {
+        if(currentLine < lineCount) {
+            return lines.get(currentLine);
+        }
+        else
+            return null;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -137,22 +180,22 @@ public class PassageForm extends javax.swing.JFrame implements SMSFormListener{
         {
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             ResultSet results = stmt.executeQuery("select * from " + tableName);
-            ResultSetMetaData rsmd = results.getMetaData();
+            //ResultSetMetaData rsmd = results.getMetaData();
             
-            results.last();
-            int rows = results.getRow();
+            //results.last();
+           // int rows = results.getRow();
             // Move to beginning
             results.beforeFirst();
             
+            results.first();
             
-            
-            Passage = new String[rows];
-            int counter=0;
-            while(results.next())
-            {
-                Passage[counter]= results.getString(2);
-                counter++;
-            }
+            passage =results.getString("PASSAGE");
+           // int counter=0;
+           // while(results.next())
+            //{
+               // passage= results.getString(2);
+             //   counter++;
+            //}
             results.close();
             stmt.close();
         }
@@ -210,9 +253,9 @@ public class PassageForm extends javax.swing.JFrame implements SMSFormListener{
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         int keycode = evt.getKeyCode();
-        lineCount++;
         
-        if(lineCount>= Passage.length)
+        
+        if(currentLine>= lineCount)
         {
             //this.setVisible(false);
             
@@ -236,7 +279,7 @@ public class PassageForm extends javax.swing.JFrame implements SMSFormListener{
                 upCount++;
 
                 results[0] = "up";
-                results[1]= Integer.toString(lineCount);
+                results[1]= Integer.toString(currentLine);
                 results[2]= Double.toString(seconds);
                 break;
 
@@ -250,57 +293,54 @@ public class PassageForm extends javax.swing.JFrame implements SMSFormListener{
                 downCount++;
 
                 results[0] = "down";
-                results[1]= Integer.toString(lineCount);
+                results[1]= Integer.toString(currentLine);
                 results[2]= Double.toString(seconds);
 
                 if(smsCondition ==3)
                 {
                     
-                    if((lineCount % 2) == 0 && smsCounter <5)
+                    String nextText = getNextTextSection();
+                    
+                    if(nextText.endsWith(". ") && smsCounter <5)
                     {
                         smsCounter++;
-                        lastVisibleLine = lineCount;
+                        lastVisibleLine = currentLine;
                         DisplaySMSEvent();
-                        txtPassage.setText(Passage[lineCount]);
+                        txtPassage.setText(nextText);
                     }
                     else
                     {
-                        String psg = "";
-                        for(int i = lastVisibleLine; i <= lineCount;i++)
-                        {
-                            psg += Passage[i];
-                        }
+                        String psg = txtPassage.getText();
+
+                        psg +=nextText;
+                        
                         txtPassage.setText(psg);
                     }
                 }
                 else if(smsCondition == 4)
                 {
-                    if((lineCount % 2) == 0 && smsCounter <5)
+                    String nextText = getNextTextSection();
+                    
+                    if(nextText.endsWith(". ") && smsCounter <5)
                     {
                         smsCounter++;
                         DisplaySMSEvent();
                     }
 
-                    String psg = "";
-                    for(int i = 0; i <= lineCount;i++)
-                    {
-                        psg += Passage[i];
-                    }
-                    txtPassage.setText(psg);
-                    
+                
+                       String psg = txtPassage.getText();
+                       psg += getNextTextSection();
+                        txtPassage.setText(psg);                    
                 }
                 else
                 {
-                    String psg = "";
-                    for(int i = 0; i < lineCount;i++)
-                    {
-                        psg += Passage[i];
-                    }
-                    txtPassage.setText(psg);
+                        String psg = txtPassage.getText();
+                        psg += getNextTextSection();
+                        txtPassage.setText(psg);
                 }
                 break;
             }
-
+currentLine++;
             arrowRecords.add(results);
 
             txtPassage.getSelectionEnd();
@@ -314,12 +354,13 @@ public class PassageForm extends javax.swing.JFrame implements SMSFormListener{
 private final ArrayList<PassageListener> listeners = new ArrayList<>();
 
     private long startTime,endTime,totalTime;
-    private int upCount,downCount,lineCount, smsCondition,lastVisibleLine, smsCounter;
+    private int upCount,downCount,currentLine, smsCondition,lastVisibleLine, smsCounter,lineCount;
     private String ParticipantNumber;
     private double smsTime;
-    private String[]Passage;
+    private String passage;
+
     private List<String[]> arrowRecords;
-    
+    private ArrayList<String> lines;
    private static String dbURL = "jdbc:derby://localhost:1527/sidresDB;create=true;user=sidresAdmin;password=1x!Software";
     private static String tableName = "PASSAGETEXT";
     // jdbc Connection
