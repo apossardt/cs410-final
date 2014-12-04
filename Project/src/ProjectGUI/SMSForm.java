@@ -30,7 +30,7 @@ public class SMSForm extends javax.swing.JDialog {
         initComponents();
         smsCounter = 0;
         smsCondition = smsMode;
-        getSMSText();
+        getNextSMS();
         startTime = System.currentTimeMillis();
     }
 
@@ -115,7 +115,7 @@ public class SMSForm extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void getSMSText()
+    private void getNextSMS()
     {
                 try
         {
@@ -195,11 +195,8 @@ public class SMSForm extends javax.swing.JDialog {
                 }
                 if(smsCounter != 5)
                 {
-                     if(smsCondition == 3 || smsCondition == 4)
-                    {
-                        
-                        this.setVisible(false);
-                    }
+
+                    this.setVisible(false);
                      txtMessage.setText(txtMessage.getText() + System.getProperty("line.separator")+ "A Friend:"+smsTexts[smsCounter]);
                 }
 
