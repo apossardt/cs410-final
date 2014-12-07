@@ -107,6 +107,7 @@ public class MainForm extends javax.swing.JFrame   {
         try {
             projMngr.beginInstructions();
             this.setVisible(false);
+            this.dispose();
         }
         catch (Exception ex) {
             // Log exception?
