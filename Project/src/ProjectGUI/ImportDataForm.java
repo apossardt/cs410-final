@@ -44,12 +44,12 @@ public class ImportDataForm extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         messagesOKButton = new javax.swing.JButton();
         messagesChangedLabel = new javax.swing.JLabel();
+        demoButtonGroup = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         passageTab = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         passageTextArea = new javax.swing.JTextArea();
         passageSaveButton = new javax.swing.JButton();
-        demoQuestionsTab = new javax.swing.JPanel();
         smsTab = new javax.swing.JPanel();
         messageOneLabel = new javax.swing.JLabel();
         messageOneTF = new javax.swing.JTextField();
@@ -91,6 +91,40 @@ public class ImportDataForm extends javax.swing.JFrame {
         q23RB = new javax.swing.JRadioButton();
         q24RB = new javax.swing.JRadioButton();
         q25RB = new javax.swing.JRadioButton();
+        demoQuestionsTab = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        jRadioButton5 = new javax.swing.JRadioButton();
+        jRadioButton6 = new javax.swing.JRadioButton();
+        jRadioButton7 = new javax.swing.JRadioButton();
+        jRadioButton8 = new javax.swing.JRadioButton();
+        jRadioButton9 = new javax.swing.JRadioButton();
+        jRadioButton10 = new javax.swing.JRadioButton();
+        jRadioButton11 = new javax.swing.JRadioButton();
+        jRadioButton12 = new javax.swing.JRadioButton();
+        jRadioButton13 = new javax.swing.JRadioButton();
+        jRadioButton14 = new javax.swing.JRadioButton();
+        jRadioButton15 = new javax.swing.JRadioButton();
+        jRadioButton16 = new javax.swing.JRadioButton();
+        jRadioButton17 = new javax.swing.JRadioButton();
+        jRadioButton18 = new javax.swing.JRadioButton();
+        jRadioButton19 = new javax.swing.JRadioButton();
+        jRadioButton20 = new javax.swing.JRadioButton();
+        jRadioButton21 = new javax.swing.JRadioButton();
+        jRadioButton22 = new javax.swing.JRadioButton();
+        jRadioButton23 = new javax.swing.JRadioButton();
+        jRadioButton24 = new javax.swing.JRadioButton();
+        jRadioButton25 = new javax.swing.JRadioButton();
+        changeDemoButton = new javax.swing.JButton();
+        jRadioButton26 = new javax.swing.JRadioButton();
+        jRadioButton27 = new javax.swing.JRadioButton();
+        jRadioButton28 = new javax.swing.JRadioButton();
+        jRadioButton29 = new javax.swing.JRadioButton();
+        jRadioButton30 = new javax.swing.JRadioButton();
+        jRadioButton31 = new javax.swing.JRadioButton();
         instLabel = new javax.swing.JLabel();
         changesSavedLabel = new javax.swing.JLabel();
 
@@ -177,19 +211,6 @@ public class ImportDataForm extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Edit Passage", passageTab);
 
-        javax.swing.GroupLayout demoQuestionsTabLayout = new javax.swing.GroupLayout(demoQuestionsTab);
-        demoQuestionsTab.setLayout(demoQuestionsTabLayout);
-        demoQuestionsTabLayout.setHorizontalGroup(
-            demoQuestionsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 728, Short.MAX_VALUE)
-        );
-        demoQuestionsTabLayout.setVerticalGroup(
-            demoQuestionsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 636, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Demographic Questions", demoQuestionsTab);
-
         messageOneLabel.setText("Message 1:");
 
         messageOneTF.setPreferredSize(new java.awt.Dimension(450, 30));
@@ -235,7 +256,7 @@ public class ImportDataForm extends javax.swing.JFrame {
                     .addComponent(messageFiveLabel)
                     .addComponent(messageFiveTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(saveSMSButton))
-                .addContainerGap(268, Short.MAX_VALUE))
+                .addContainerGap(285, Short.MAX_VALUE))
         );
         smsTabLayout.setVerticalGroup(
             smsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,7 +283,7 @@ public class ImportDataForm extends javax.swing.JFrame {
                 .addComponent(messageFiveTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(saveSMSButton)
-                .addContainerGap(322, Short.MAX_VALUE))
+                .addContainerGap(383, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("SMS Messages", smsTab);
@@ -391,7 +412,7 @@ public class ImportDataForm extends javax.swing.JFrame {
                     .addComponent(q1RB)
                     .addComponent(q3RB)
                     .addComponent(changeQuestionButton))
-                .addContainerGap(455, Short.MAX_VALUE))
+                .addContainerGap(472, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -458,6 +479,344 @@ public class ImportDataForm extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Passage Questions", passageQuestionsTab);
 
+        demoQuestionsTab.setLayout(new java.awt.GridBagLayout());
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setText("Select the question you would like to edit:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(11, 10, 0, 0);
+        demoQuestionsTab.add(jLabel4, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton1);
+        jRadioButton1.setText("jRadioButton1");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton1, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton2);
+        jRadioButton2.setText("jRadioButton2");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton2, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton3);
+        jRadioButton3.setText("jRadioButton3");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton3, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton4);
+        jRadioButton4.setText("jRadioButton4");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton4, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton5);
+        jRadioButton5.setText("jRadioButton5");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton5, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton6);
+        jRadioButton6.setText("jRadioButton6");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton6, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton7);
+        jRadioButton7.setText("jRadioButton7");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton7, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton8);
+        jRadioButton8.setText("jRadioButton8");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton8, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton9);
+        jRadioButton9.setText("jRadioButton9");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton9, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton10);
+        jRadioButton10.setText("jRadioButton10");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton10, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton11);
+        jRadioButton11.setText("jRadioButton11");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton11, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton12);
+        jRadioButton12.setText("jRadioButton12");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton12, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton13);
+        jRadioButton13.setText("jRadioButton13");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton13, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton14);
+        jRadioButton14.setText("jRadioButton14");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 14;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton14, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton15);
+        jRadioButton15.setText("jRadioButton15");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton15, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton16);
+        jRadioButton16.setText("jRadioButton16");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 16;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton16, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton17);
+        jRadioButton17.setText("jRadioButton17");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 17;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton17, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton18);
+        jRadioButton18.setText("jRadioButton18");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 18;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton18, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton19);
+        jRadioButton19.setText("jRadioButton19");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 19;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton19, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton20);
+        jRadioButton20.setText("jRadioButton20");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 20;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton20, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton21);
+        jRadioButton21.setText("jRadioButton21");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 21;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton21, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton22);
+        jRadioButton22.setText("jRadioButton22");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 22;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton22, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton23);
+        jRadioButton23.setText("jRadioButton23");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 23;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton23, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton24);
+        jRadioButton24.setText("jRadioButton24");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 24;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton24, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton25);
+        jRadioButton25.setText("jRadioButton25");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 25;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton25, gridBagConstraints);
+
+        changeDemoButton.setText("Change Question");
+        changeDemoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeDemoButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 32;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(2, 10, 23, 0);
+        demoQuestionsTab.add(changeDemoButton, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton26);
+        jRadioButton26.setText("jRadioButton26");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 26;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton26, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton27);
+        jRadioButton27.setText("jRadioButton27");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 27;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton27, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton28);
+        jRadioButton28.setText("jRadioButton28");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 28;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton28, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton29);
+        jRadioButton29.setText("jRadioButton29");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 29;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton29, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton30);
+        jRadioButton30.setText("jRadioButton30");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 30;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton30, gridBagConstraints);
+
+        demoButtonGroup.add(jRadioButton31);
+        jRadioButton31.setText("jRadioButton31");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 31;
+        gridBagConstraints.gridwidth = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
+        demoQuestionsTab.add(jRadioButton31, gridBagConstraints);
+
+        jTabbedPane1.addTab("Demographic Questions", demoQuestionsTab);
+
         instLabel.setForeground(new java.awt.Color(255, 0, 0));
         instLabel.setText("*Changes can be made by editing the text in a field and clicking 'Save Changes'. \nFields not changed will remain the same when 'Save Changes' is clicked.");
 
@@ -467,7 +826,7 @@ public class ImportDataForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(instLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(changesSavedLabel)
@@ -476,7 +835,7 @@ public class ImportDataForm extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(instLabel)
                 .addGap(5, 5, 5)
@@ -558,6 +917,13 @@ public class ImportDataForm extends javax.swing.JFrame {
         smsSavedDialog.setVisible(false);
     }//GEN-LAST:event_messagesOKButtonActionPerformed
 
+    private void changeDemoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeDemoButtonActionPerformed
+        int questionNumber = getDemoData();
+        demoForm = new EditDemographicForm();
+        demoForm.setVisible(true);
+        demoForm.setCurrentQuestion(question, answers, questionNumber, openEnded);
+    }//GEN-LAST:event_changeDemoButtonActionPerformed
+
     private int getQuestionData() {
         Enumeration<AbstractButton> buttons = questionButtonGroup.getElements();
         int counter = 0;
@@ -582,9 +948,42 @@ public class ImportDataForm extends javax.swing.JFrame {
             }
             else counter++;
         }
+        try {
+            stmt.close();
+        } catch (SQLException e) { e.printStackTrace(); }
         return 0;
     }
 
+    private int getDemoData() {
+        Enumeration<AbstractButton> buttons = demoButtonGroup.getElements();
+        int counter = 0;
+        answers = new String[6];
+        while (buttons.hasMoreElements()) {
+            if(((JRadioButton)buttons.nextElement()).isSelected()) {
+                try {
+                    stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                    questionResults = stmt.executeQuery("select * from SURVEY");
+                    questionResults.absolute(counter + 1);
+                    question = questionResults.getString("QUESTIONTEXT");
+                    answers[0] = questionResults.getString("ANSWER_A");
+                    answers[1] = questionResults.getString("ANSWER_B");
+                    answers[2] = questionResults.getString("ANSWER_C");
+                    answers[3] = questionResults.getString("ANSWER_D");
+                    answers[4] = questionResults.getString("ANSWER_E");
+                    answers[5] = questionResults.getString("ANSWER_F");
+                    openEnded = questionResults.getBoolean("OPENENDED");
+                } catch (SQLException except) {
+                    except.printStackTrace();
+                }
+                return counter + 1;
+            }
+            else counter++;
+        }
+        try {
+            stmt.close();
+        } catch (SQLException e) { e.printStackTrace(); }
+        return 0;
+    }
     /**
      * @param args the command line arguments
      */
@@ -712,6 +1111,24 @@ public class ImportDataForm extends javax.swing.JFrame {
         {
             except.printStackTrace();
         }
+        try {
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            questionResults = stmt.executeQuery("select * from SURVEY");
+            questionResults.beforeFirst();
+            demoQuestions = new String[31];
+            
+            int counter = 0;
+            while(questionResults.next())
+            {
+                demoQuestions[counter] = questionResults.getString("QUESTIONTEXT");
+                counter++;
+            }
+            stmt.close();
+            questionResults.close();
+        } catch (SQLException except)
+        {
+            except.printStackTrace();
+        }
         passageTextArea.setText(passage);
         messageOneTF.setText(messages[0]);
         messageTwoTF.setText(messages[1]);
@@ -743,25 +1160,67 @@ public class ImportDataForm extends javax.swing.JFrame {
         q23RB.setText(questions[22]);
         q24RB.setText(questions[23]);
         q25RB.setText(questions[24]);
+        Enumeration<AbstractButton> demoButtons = demoButtonGroup.getElements();
+        int counter = 0;
+        while(demoButtons.hasMoreElements()) {
+            ((JRadioButton)demoButtons.nextElement()).setText(demoQuestions[counter]);
+            counter++;
+        }
     }
     private static final String dbURL = "jdbc:derby://localhost:1527/sidresDB;create=true;user=sidresAdmin;password=1x!Software";
     private Statement stmt;
     private Connection conn;
-    private String[] messages, questions, answers;
+    private String[] messages, questions, answers, demoQuestions;
+    private boolean openEnded;
     private String question, correct;
     private ArrayList<String> lines = new ArrayList<>();
     private EditQuestionForm editForm;
+    private EditDemographicForm demoForm;
     private ResultSet questionResults;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton changeDemoButton;
     private javax.swing.JButton changeQuestionButton;
     private javax.swing.JLabel changesSavedLabel;
+    private javax.swing.ButtonGroup demoButtonGroup;
     private javax.swing.JPanel demoQuestionsTab;
     private javax.swing.JButton dialogOKButton;
     private javax.swing.JLabel instLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton10;
+    private javax.swing.JRadioButton jRadioButton11;
+    private javax.swing.JRadioButton jRadioButton12;
+    private javax.swing.JRadioButton jRadioButton13;
+    private javax.swing.JRadioButton jRadioButton14;
+    private javax.swing.JRadioButton jRadioButton15;
+    private javax.swing.JRadioButton jRadioButton16;
+    private javax.swing.JRadioButton jRadioButton17;
+    private javax.swing.JRadioButton jRadioButton18;
+    private javax.swing.JRadioButton jRadioButton19;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton20;
+    private javax.swing.JRadioButton jRadioButton21;
+    private javax.swing.JRadioButton jRadioButton22;
+    private javax.swing.JRadioButton jRadioButton23;
+    private javax.swing.JRadioButton jRadioButton24;
+    private javax.swing.JRadioButton jRadioButton25;
+    private javax.swing.JRadioButton jRadioButton26;
+    private javax.swing.JRadioButton jRadioButton27;
+    private javax.swing.JRadioButton jRadioButton28;
+    private javax.swing.JRadioButton jRadioButton29;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton30;
+    private javax.swing.JRadioButton jRadioButton31;
+    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton jRadioButton5;
+    private javax.swing.JRadioButton jRadioButton6;
+    private javax.swing.JRadioButton jRadioButton7;
+    private javax.swing.JRadioButton jRadioButton8;
+    private javax.swing.JRadioButton jRadioButton9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel messageFiveLabel;

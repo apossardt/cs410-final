@@ -30,18 +30,6 @@ public class EditQuestionForm extends javax.swing.JFrame {
         answerCTF.setText(answers[2]);
         answerDTF.setText(answers[3]);
         answerETF.setText(answers[4]);
-        if("".equals(answers[2]) || " ".equals(answers[2])) {
-            answerCLabel.setVisible(false);
-            answerCTF.setVisible(false);
-        }
-        if("".equals(answers[3]) || " ".equals(answers[3])) {
-            answerDLabel.setVisible(false);
-            answerDTF.setVisible(false);
-        }
-        if("".equals(answers[4]) || " ".equals(answers[4])) {
-            answerELabel.setVisible(false);
-            answerETF.setVisible(false);
-        }   
         correctAnswerTF.setText(correct);
     }
     /**
