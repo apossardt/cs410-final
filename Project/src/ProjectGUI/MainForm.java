@@ -40,7 +40,6 @@ public class MainForm extends javax.swing.JFrame   {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Experiment Manager");
         setMinimumSize(new java.awt.Dimension(1000, 650));
-        setPreferredSize(new java.awt.Dimension(1000, 650));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -69,7 +68,7 @@ public class MainForm extends javax.swing.JFrame   {
         jPanel1.add(btnBegin, gridBagConstraints);
 
         btnManageData.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnManageData.setText("Edit Passage/Questions");
+        btnManageData.setText("Edit Passage/Questions/SMS Data");
         btnManageData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManageDataActionPerformed(evt);
