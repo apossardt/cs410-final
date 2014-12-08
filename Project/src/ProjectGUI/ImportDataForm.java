@@ -4,9 +4,13 @@ package ProjectGUI;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.StringTokenizer;
+import javax.swing.AbstractButton;
+import javax.swing.JRadioButton;
 
 /**
  *
@@ -30,13 +34,21 @@ public class ImportDataForm extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
+        questionButtonGroup = new javax.swing.ButtonGroup();
+        passageSavedDialog = new javax.swing.JDialog();
+        jLabel2 = new javax.swing.JLabel();
+        dialogOKButton = new javax.swing.JButton();
+        smsSavedDialog = new javax.swing.JDialog();
+        jLabel3 = new javax.swing.JLabel();
+        messagesOKButton = new javax.swing.JButton();
+        messagesChangedLabel = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         passageTab = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         passageTextArea = new javax.swing.JTextArea();
         passageSaveButton = new javax.swing.JButton();
-        passageQuestionsTab = new javax.swing.JPanel();
         demoQuestionsTab = new javax.swing.JPanel();
         smsTab = new javax.swing.JPanel();
         messageOneLabel = new javax.swing.JLabel();
@@ -50,93 +62,160 @@ public class ImportDataForm extends javax.swing.JFrame {
         messageFiveLabel = new javax.swing.JLabel();
         messageFiveTF = new javax.swing.JTextField();
         saveSMSButton = new javax.swing.JButton();
+        passageQuestionsTab = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        q1RB = new javax.swing.JRadioButton();
+        q2RB = new javax.swing.JRadioButton();
+        q3RB = new javax.swing.JRadioButton();
+        q4RB = new javax.swing.JRadioButton();
+        q5RB = new javax.swing.JRadioButton();
+        q6RB = new javax.swing.JRadioButton();
+        q7RB = new javax.swing.JRadioButton();
+        q8RB = new javax.swing.JRadioButton();
+        q9RB = new javax.swing.JRadioButton();
+        q10RB = new javax.swing.JRadioButton();
+        q11RB = new javax.swing.JRadioButton();
+        q12RB = new javax.swing.JRadioButton();
+        q13RB = new javax.swing.JRadioButton();
+        q14RB = new javax.swing.JRadioButton();
+        q15RB = new javax.swing.JRadioButton();
+        q16RB = new javax.swing.JRadioButton();
+        q17RB = new javax.swing.JRadioButton();
+        q18RB = new javax.swing.JRadioButton();
+        q19RB = new javax.swing.JRadioButton();
+        q20RB = new javax.swing.JRadioButton();
+        changeQuestionButton = new javax.swing.JButton();
+        q21RB = new javax.swing.JRadioButton();
+        q22RB = new javax.swing.JRadioButton();
+        q23RB = new javax.swing.JRadioButton();
+        q24RB = new javax.swing.JRadioButton();
+        q25RB = new javax.swing.JRadioButton();
         instLabel = new javax.swing.JLabel();
         changesSavedLabel = new javax.swing.JLabel();
 
+        passageSavedDialog.setTitle("Manager");
+        passageSavedDialog.setMaximumSize(new java.awt.Dimension(300, 200));
+        passageSavedDialog.setMinimumSize(new java.awt.Dimension(300, 200));
+        passageSavedDialog.setPreferredSize(new java.awt.Dimension(300, 200));
+        passageSavedDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jLabel2.setText("Passage Updated.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        passageSavedDialog.getContentPane().add(jLabel2, gridBagConstraints);
+
+        dialogOKButton.setText("OK");
+        dialogOKButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dialogOKButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 20, 0);
+        passageSavedDialog.getContentPane().add(dialogOKButton, gridBagConstraints);
+
+        smsSavedDialog.setTitle("Manager");
+        smsSavedDialog.setMaximumSize(new java.awt.Dimension(300, 200));
+        smsSavedDialog.setMinimumSize(new java.awt.Dimension(300, 200));
+        smsSavedDialog.setPreferredSize(new java.awt.Dimension(300, 200));
+        smsSavedDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jLabel3.setText("Messages saved. The following SMS messages were altered:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        smsSavedDialog.getContentPane().add(jLabel3, gridBagConstraints);
+
+        messagesOKButton.setText("OK");
+        messagesOKButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                messagesOKButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        smsSavedDialog.getContentPane().add(messagesOKButton, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 20, 0);
+        smsSavedDialog.getContentPane().add(messagesChangedLabel, gridBagConstraints);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(800, 600));
-        setMinimumSize(new java.awt.Dimension(800, 600));
+        setMaximumSize(new java.awt.Dimension(750, 750));
+        setMinimumSize(new java.awt.Dimension(750, 750));
+        setPreferredSize(new java.awt.Dimension(750, 750));
         setResizable(false);
 
-        passageTextArea.setColumns(20);
-        passageTextArea.setRows(5);
-        passageTextArea.setMaximumSize(new java.awt.Dimension(300, 250));
-        passageTextArea.setMinimumSize(new java.awt.Dimension(300, 250));
-        passageTextArea.setPreferredSize(new java.awt.Dimension(300, 250));
+        jTabbedPane1.setMaximumSize(new java.awt.Dimension(730, 375));
+        jTabbedPane1.setMinimumSize(new java.awt.Dimension(730, 375));
+
+        passageTab.setLayout(new java.awt.BorderLayout());
+
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(650, 350));
+
+        passageTextArea.setColumns(60);
+        passageTextArea.setRows(15);
+        passageTextArea.setTabSize(5);
+        passageTextArea.setMaximumSize(new java.awt.Dimension(650, 350));
+        passageTextArea.setMinimumSize(new java.awt.Dimension(650, 350));
+        passageTextArea.setPreferredSize(null);
         jScrollPane1.setViewportView(passageTextArea);
 
-        passageSaveButton.setText("Save Changes");
+        passageTab.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        javax.swing.GroupLayout passageTabLayout = new javax.swing.GroupLayout(passageTab);
-        passageTab.setLayout(passageTabLayout);
-        passageTabLayout.setHorizontalGroup(
-            passageTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(passageTabLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(passageTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passageSaveButton))
-                .addContainerGap(314, Short.MAX_VALUE))
-        );
-        passageTabLayout.setVerticalGroup(
-            passageTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(passageTabLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(passageSaveButton)
-                .addContainerGap(156, Short.MAX_VALUE))
-        );
+        passageSaveButton.setText("Save Changes");
+        passageSaveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passageSaveButtonActionPerformed(evt);
+            }
+        });
+        passageTab.add(passageSaveButton, java.awt.BorderLayout.PAGE_END);
 
         jTabbedPane1.addTab("Edit Passage", passageTab);
-
-        javax.swing.GroupLayout passageQuestionsTabLayout = new javax.swing.GroupLayout(passageQuestionsTab);
-        passageQuestionsTab.setLayout(passageQuestionsTabLayout);
-        passageQuestionsTabLayout.setHorizontalGroup(
-            passageQuestionsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 724, Short.MAX_VALUE)
-        );
-        passageQuestionsTabLayout.setVerticalGroup(
-            passageQuestionsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 346, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Passage Questions", passageQuestionsTab);
 
         javax.swing.GroupLayout demoQuestionsTabLayout = new javax.swing.GroupLayout(demoQuestionsTab);
         demoQuestionsTab.setLayout(demoQuestionsTabLayout);
         demoQuestionsTabLayout.setHorizontalGroup(
             demoQuestionsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 724, Short.MAX_VALUE)
+            .addGap(0, 728, Short.MAX_VALUE)
         );
         demoQuestionsTabLayout.setVerticalGroup(
             demoQuestionsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 346, Short.MAX_VALUE)
+            .addGap(0, 636, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Demographic Questions", demoQuestionsTab);
 
         messageOneLabel.setText("Message 1:");
 
-        messageOneTF.setPreferredSize(new java.awt.Dimension(300, 30));
+        messageOneTF.setPreferredSize(new java.awt.Dimension(450, 30));
 
         messageTwoLabel.setText("Message 2:");
 
-        messageTwoTF.setPreferredSize(new java.awt.Dimension(300, 30));
+        messageTwoTF.setPreferredSize(new java.awt.Dimension(450, 30));
 
         messageThreeLabel.setText("Message 3:");
 
-        messageThreeTF.setPreferredSize(new java.awt.Dimension(300, 30));
+        messageThreeTF.setPreferredSize(new java.awt.Dimension(450, 30));
 
-        messageFourTF.setPreferredSize(new java.awt.Dimension(300, 30));
+        messageFourTF.setPreferredSize(new java.awt.Dimension(450, 30));
 
         messageFourLabel.setText("Message 4:");
 
         messageFiveLabel.setText("Message 5:");
 
-        messageFiveTF.setPreferredSize(new java.awt.Dimension(300, 30));
+        messageFiveTF.setPreferredSize(new java.awt.Dimension(450, 30));
 
         saveSMSButton.setText("Save Changes");
+        saveSMSButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveSMSButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout smsTabLayout = new javax.swing.GroupLayout(smsTab);
         smsTab.setLayout(smsTabLayout);
@@ -156,7 +235,7 @@ public class ImportDataForm extends javax.swing.JFrame {
                     .addComponent(messageFiveLabel)
                     .addComponent(messageFiveTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(saveSMSButton))
-                .addContainerGap(414, Short.MAX_VALUE))
+                .addContainerGap(268, Short.MAX_VALUE))
         );
         smsTabLayout.setVerticalGroup(
             smsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,10 +262,201 @@ public class ImportDataForm extends javax.swing.JFrame {
                 .addComponent(messageFiveTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(saveSMSButton)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(322, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("SMS Messages", smsTab);
+
+        passageQuestionsTab.setLayout(new java.awt.BorderLayout());
+
+        jPanel1.setPreferredSize(new java.awt.Dimension(650, 675));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("Select the question you would like to edit:");
+        jLabel1.setToolTipText("");
+
+        questionButtonGroup.add(q1RB);
+        q1RB.setText("jRadioButton1");
+
+        questionButtonGroup.add(q2RB);
+        q2RB.setText("jRadioButton2");
+
+        questionButtonGroup.add(q3RB);
+        q3RB.setText("jRadioButton3");
+
+        questionButtonGroup.add(q4RB);
+        q4RB.setText("jRadioButton4");
+
+        questionButtonGroup.add(q5RB);
+        q5RB.setText("jRadioButton5");
+
+        questionButtonGroup.add(q6RB);
+        q6RB.setText("jRadioButton6");
+
+        questionButtonGroup.add(q7RB);
+        q7RB.setText("jRadioButton7");
+
+        questionButtonGroup.add(q8RB);
+        q8RB.setText("jRadioButton8");
+
+        questionButtonGroup.add(q9RB);
+        q9RB.setText("jRadioButton9");
+
+        questionButtonGroup.add(q10RB);
+        q10RB.setText("jRadioButton10");
+
+        questionButtonGroup.add(q11RB);
+        q11RB.setText("jRadioButton11");
+
+        questionButtonGroup.add(q12RB);
+        q12RB.setText("jRadioButton12");
+
+        questionButtonGroup.add(q13RB);
+        q13RB.setText("jRadioButton13");
+
+        questionButtonGroup.add(q14RB);
+        q14RB.setText("jRadioButton14");
+
+        questionButtonGroup.add(q15RB);
+        q15RB.setText("jRadioButton15");
+
+        questionButtonGroup.add(q16RB);
+        q16RB.setText("jRadioButton16");
+
+        questionButtonGroup.add(q17RB);
+        q17RB.setText("jRadioButton17");
+
+        questionButtonGroup.add(q18RB);
+        q18RB.setText("jRadioButton18");
+
+        questionButtonGroup.add(q19RB);
+        q19RB.setText("jRadioButton19");
+
+        questionButtonGroup.add(q20RB);
+        q20RB.setText("jRadioButton20");
+
+        changeQuestionButton.setText("Change Question");
+        changeQuestionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeQuestionButtonActionPerformed(evt);
+            }
+        });
+
+        questionButtonGroup.add(q21RB);
+        q21RB.setText("jRadioButton1");
+
+        questionButtonGroup.add(q22RB);
+        q22RB.setText("jRadioButton2");
+
+        questionButtonGroup.add(q23RB);
+        q23RB.setText("jRadioButton3");
+
+        questionButtonGroup.add(q24RB);
+        q24RB.setText("jRadioButton4");
+
+        questionButtonGroup.add(q25RB);
+        q25RB.setText("jRadioButton5");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(q25RB)
+                    .addComponent(q24RB)
+                    .addComponent(q23RB)
+                    .addComponent(q22RB)
+                    .addComponent(q21RB)
+                    .addComponent(q20RB)
+                    .addComponent(q19RB)
+                    .addComponent(q18RB)
+                    .addComponent(q17RB)
+                    .addComponent(q16RB)
+                    .addComponent(q15RB)
+                    .addComponent(q14RB)
+                    .addComponent(q13RB)
+                    .addComponent(q12RB)
+                    .addComponent(q11RB)
+                    .addComponent(q10RB)
+                    .addComponent(q9RB)
+                    .addComponent(q8RB)
+                    .addComponent(q7RB)
+                    .addComponent(q6RB)
+                    .addComponent(q5RB)
+                    .addComponent(q4RB)
+                    .addComponent(q2RB)
+                    .addComponent(jLabel1)
+                    .addComponent(q1RB)
+                    .addComponent(q3RB)
+                    .addComponent(changeQuestionButton))
+                .addContainerGap(455, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q1RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q2RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q3RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q4RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q5RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q6RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q7RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q8RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q9RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q10RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q11RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q12RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q13RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q14RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q15RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q16RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q17RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q18RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q19RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q20RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q21RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q22RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q23RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q24RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(q25RB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(changeQuestionButton)
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
+
+        passageQuestionsTab.add(jPanel1, java.awt.BorderLayout.PAGE_START);
+        jPanel1.getAccessibleContext().setAccessibleName("");
+
+        jTabbedPane1.addTab("Passage Questions", passageQuestionsTab);
 
         instLabel.setForeground(new java.awt.Color(255, 0, 0));
         instLabel.setText("*Changes can be made by editing the text in a field and clicking 'Save Changes'. \nFields not changed will remain the same when 'Save Changes' is clicked.");
@@ -197,7 +467,7 @@ public class ImportDataForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)
             .addComponent(instLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(changesSavedLabel)
@@ -206,7 +476,7 @@ public class ImportDataForm extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(instLabel)
                 .addGap(5, 5, 5)
@@ -217,6 +487,103 @@ public class ImportDataForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void changeQuestionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeQuestionButtonActionPerformed
+        int questionNumber = getQuestionData();
+        editForm = new EditQuestionForm();
+        editForm.setVisible(true);
+        editForm.setCurrentQuestion(question, answers, correct, questionNumber);
+    }//GEN-LAST:event_changeQuestionButtonActionPerformed
+
+    private void passageSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passageSaveButtonActionPerformed
+        try
+        {
+            Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
+            //Get a connection
+            conn = DriverManager.getConnection(dbURL); 
+            stmt = conn.createStatement();
+            stmt.executeUpdate("UPDATE PASSAGETEXT SET PASSAGE='" + passageTextArea.getText() + "' WHERE ID=" + 1);
+            stmt.close();
+        }
+        catch (Exception except)
+        {
+            except.printStackTrace();
+        }
+        passageSavedDialog.setVisible(true);
+    }//GEN-LAST:event_passageSaveButtonActionPerformed
+
+    private void saveSMSButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveSMSButtonActionPerformed
+        try
+        {
+            Class.forName("org.apache.derby.jdbc.ClientDriver").newInstance();
+            //Get a connection
+            conn = DriverManager.getConnection(dbURL); 
+            stmt = conn.createStatement();
+            String updated = "";
+            if(!(messages[0].equals(messageOneTF.getText()))) {
+                stmt.executeUpdate("UPDATE SMSTEXT SET SMS='" + messageOneTF.getText() + "' WHERE ID=" + 1);
+                updated += "Message 1 \n";
+            }
+            if(!(messages[1].equals(messageTwoTF.getText()))) {
+                stmt.executeUpdate("UPDATE SMSTEXT SET SMS='" + messageTwoTF.getText() + "' WHERE ID=" + 2);
+                updated += "Message 2 \n";
+            }
+            if(!(messages[2].equals(messageThreeTF.getText()))) {
+                stmt.executeUpdate("UPDATE SMSTEXT SET SMS='" + messageThreeTF.getText() + "' WHERE ID=" + 3);
+                updated += "Message 3 \n";
+            }
+            if(!(messages[3].equals(messageFourTF.getText()))) {
+                stmt.executeUpdate("UPDATE SMSTEXT SET SMS='" + messageFourTF.getText() + "' WHERE ID=" + 4);
+                updated += "Message 4 \n";
+            }
+            if(!(messages[4].equals(messageFiveTF.getText()))) {
+                stmt.executeUpdate("UPDATE SMSTEXT SET SMS='" + messageFiveTF.getText() + "' WHERE ID=" + 5);
+                updated += "Message 5 \n";
+            }
+            messagesChangedLabel.setText(updated);
+            stmt.close();
+            smsSavedDialog.setVisible(true);
+        }
+        catch (Exception except)
+        {
+            except.printStackTrace();
+        }
+    }//GEN-LAST:event_saveSMSButtonActionPerformed
+
+    private void dialogOKButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dialogOKButtonActionPerformed
+        passageSavedDialog.setVisible(false);
+    }//GEN-LAST:event_dialogOKButtonActionPerformed
+
+    private void messagesOKButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_messagesOKButtonActionPerformed
+        smsSavedDialog.setVisible(false);
+    }//GEN-LAST:event_messagesOKButtonActionPerformed
+
+    private int getQuestionData() {
+        Enumeration<AbstractButton> buttons = questionButtonGroup.getElements();
+        int counter = 0;
+        answers = new String[5];
+        while (buttons.hasMoreElements()) {
+            if(((JRadioButton)buttons.nextElement()).isSelected()) {
+                try {
+                    stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+                    questionResults = stmt.executeQuery("select * from QUESTION");
+                    questionResults.absolute(counter + 1);
+                    question = questionResults.getString("QUESTION");
+                    answers[0] = questionResults.getString("ANSWER_A");
+                    answers[1] = questionResults.getString("ANSWER_B");
+                    answers[2] = questionResults.getString("ANSWER_C");
+                    answers[3] = questionResults.getString("ANSWER_D");
+                    answers[4] = questionResults.getString("ANSWER_E");
+                    correct = questionResults.getString("CORRECT_ANSWER");
+                } catch (SQLException except) {
+                    except.printStackTrace();
+                }
+                return counter + 1;
+            }
+            else counter++;
+        }
+        return 0;
+    }
 
     /**
      * @param args the command line arguments
@@ -253,6 +620,27 @@ public class ImportDataForm extends javax.swing.JFrame {
         });
     }
     
+    private void splitPassage(int maxLineLength, String passage) {
+        
+        StringTokenizer tok = new StringTokenizer(passage, " ");
+        int lineLength = 0;
+        String word;
+        String line = "";
+        
+        while(tok.hasMoreTokens()) {
+            word = tok.nextToken();
+            
+            if(lineLength + word.length() > maxLineLength) {
+                lines.add(line);
+                line = "";
+                lineLength = 0;
+            }
+            line += word + " ";
+            lineLength += word.length();
+        }
+        lines.add(line);
+    }
+    
     private void getFromDB() {
         String passage = "";
         try
@@ -265,7 +653,6 @@ public class ImportDataForm extends javax.swing.JFrame {
         {
             except.printStackTrace();
         }
-        
         try
         {
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -307,21 +694,74 @@ public class ImportDataForm extends javax.swing.JFrame {
         {
             sqlExcept.printStackTrace();
         }
+        try {
+            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            questionResults = stmt.executeQuery("select * from QUESTION");
+            questionResults.beforeFirst();
+            questions = new String[25];
+            
+            int counter = 0;
+            while(questionResults.next())
+            {
+                questions[counter] = questionResults.getString("QUESTION");
+                counter++;
+            }
+            stmt.close();
+            questionResults.close();
+        } catch (SQLException except)
+        {
+            except.printStackTrace();
+        }
         passageTextArea.setText(passage);
         messageOneTF.setText(messages[0]);
         messageTwoTF.setText(messages[1]);
         messageThreeTF.setText(messages[2]);
         messageFourTF.setText(messages[3]);
         messageFiveTF.setText(messages[4]);
+        q1RB.setText(questions[0]);
+        q2RB.setText(questions[1]);
+        q3RB.setText(questions[2]);
+        q4RB.setText(questions[3]);
+        q5RB.setText(questions[4]);
+        q6RB.setText(questions[5]);
+        q7RB.setText(questions[6]);
+        q8RB.setText(questions[7]);
+        q9RB.setText(questions[8]);
+        q10RB.setText(questions[9]);
+        q11RB.setText(questions[10]);
+        q12RB.setText(questions[11]);
+        q13RB.setText(questions[12]);
+        q14RB.setText(questions[13]);
+        q15RB.setText(questions[14]);
+        q16RB.setText(questions[15]);
+        q17RB.setText(questions[16]);
+        q18RB.setText(questions[17]);
+        q19RB.setText(questions[18]);
+        q20RB.setText(questions[19]);
+        q21RB.setText(questions[20]);
+        q22RB.setText(questions[21]);
+        q23RB.setText(questions[22]);
+        q24RB.setText(questions[23]);
+        q25RB.setText(questions[24]);
     }
-    private static String dbURL = "jdbc:derby://localhost:1527/sidresDB;create=true;user=sidresAdmin;password=1x!Software";
+    private static final String dbURL = "jdbc:derby://localhost:1527/sidresDB;create=true;user=sidresAdmin;password=1x!Software";
     private Statement stmt;
     private Connection conn;
-    private String[] messages;
+    private String[] messages, questions, answers;
+    private String question, correct;
+    private ArrayList<String> lines = new ArrayList<>();
+    private EditQuestionForm editForm;
+    private ResultSet questionResults;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton changeQuestionButton;
     private javax.swing.JLabel changesSavedLabel;
     private javax.swing.JPanel demoQuestionsTab;
+    private javax.swing.JButton dialogOKButton;
     private javax.swing.JLabel instLabel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel messageFiveLabel;
@@ -334,11 +774,41 @@ public class ImportDataForm extends javax.swing.JFrame {
     private javax.swing.JTextField messageThreeTF;
     private javax.swing.JLabel messageTwoLabel;
     private javax.swing.JTextField messageTwoTF;
+    private javax.swing.JLabel messagesChangedLabel;
+    private javax.swing.JButton messagesOKButton;
     private javax.swing.JPanel passageQuestionsTab;
     private javax.swing.JButton passageSaveButton;
+    private javax.swing.JDialog passageSavedDialog;
     private javax.swing.JPanel passageTab;
     private javax.swing.JTextArea passageTextArea;
+    private javax.swing.JRadioButton q10RB;
+    private javax.swing.JRadioButton q11RB;
+    private javax.swing.JRadioButton q12RB;
+    private javax.swing.JRadioButton q13RB;
+    private javax.swing.JRadioButton q14RB;
+    private javax.swing.JRadioButton q15RB;
+    private javax.swing.JRadioButton q16RB;
+    private javax.swing.JRadioButton q17RB;
+    private javax.swing.JRadioButton q18RB;
+    private javax.swing.JRadioButton q19RB;
+    private javax.swing.JRadioButton q1RB;
+    private javax.swing.JRadioButton q20RB;
+    private javax.swing.JRadioButton q21RB;
+    private javax.swing.JRadioButton q22RB;
+    private javax.swing.JRadioButton q23RB;
+    private javax.swing.JRadioButton q24RB;
+    private javax.swing.JRadioButton q25RB;
+    private javax.swing.JRadioButton q2RB;
+    private javax.swing.JRadioButton q3RB;
+    private javax.swing.JRadioButton q4RB;
+    private javax.swing.JRadioButton q5RB;
+    private javax.swing.JRadioButton q6RB;
+    private javax.swing.JRadioButton q7RB;
+    private javax.swing.JRadioButton q8RB;
+    private javax.swing.JRadioButton q9RB;
+    private javax.swing.ButtonGroup questionButtonGroup;
     private javax.swing.JButton saveSMSButton;
+    private javax.swing.JDialog smsSavedDialog;
     private javax.swing.JPanel smsTab;
     // End of variables declaration//GEN-END:variables
 }

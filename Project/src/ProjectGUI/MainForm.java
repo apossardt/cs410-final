@@ -12,6 +12,7 @@ package ProjectGUI;
 public class MainForm extends javax.swing.JFrame   {
 
     private ProjectManager projMngr;
+    private ImportDataForm impData;
     /**
      * Creates new form MainForm
      */
@@ -29,19 +30,27 @@ public class MainForm extends javax.swing.JFrame   {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
+        jPanel1 = new javax.swing.JPanel();
         btnBegin = new javax.swing.JButton();
         btnManageData = new javax.swing.JButton();
         btnExport = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Experiment Manager");
-        setMinimumSize(new java.awt.Dimension(1150, 650));
+        setMinimumSize(new java.awt.Dimension(1000, 650));
+        setPreferredSize(new java.awt.Dimension(1000, 650));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("SIDRES"));
+        jPanel1.setLayout(new java.awt.GridBagLayout());
 
         btnBegin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnBegin.setText("Begin Experiment");
@@ -50,6 +59,14 @@ public class MainForm extends javax.swing.JFrame   {
                 btnBeginActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = 15;
+        gridBagConstraints.ipady = 15;
+        gridBagConstraints.insets = new java.awt.Insets(16, 16, 16, 16);
+        jPanel1.add(btnBegin, gridBagConstraints);
 
         btnManageData.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnManageData.setText("Edit Passage/Questions");
@@ -58,6 +75,14 @@ public class MainForm extends javax.swing.JFrame   {
                 btnManageDataActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = 15;
+        gridBagConstraints.ipady = 15;
+        gridBagConstraints.insets = new java.awt.Insets(16, 16, 16, 16);
+        jPanel1.add(btnManageData, gridBagConstraints);
 
         btnExport.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnExport.setText("Export Results");
@@ -66,30 +91,21 @@ public class MainForm extends javax.swing.JFrame   {
                 btnExportActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = 15;
+        gridBagConstraints.ipady = 15;
+        gridBagConstraints.insets = new java.awt.Insets(16, 16, 16, 16);
+        jPanel1.add(btnExport, gridBagConstraints);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(467, 467, 467)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(btnExport)
-                    .addComponent(btnBegin)
-                    .addComponent(btnManageData))
-                .addContainerGap(466, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(btnBegin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
-                .addComponent(btnManageData)
-                .addGap(137, 137, 137)
-                .addComponent(btnExport)
-                .addGap(108, 108, 108))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(209, 451, 290, 438);
+        getContentPane().add(jPanel1, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -114,20 +130,14 @@ public class MainForm extends javax.swing.JFrame   {
     }//GEN-LAST:event_btnBeginActionPerformed
 
     private void btnManageDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageDataActionPerformed
-        try {
-            // Launch data management form. Do not dispose this form after doing so.
-            // Will probably add data management form in after Wednesday 11/5, since we have yet to discuss
-            // Maybe wait until database is set to handle this? Probably requires figuring out implementation.
-        }
-        catch (Exception ex) {
-            // Log exception?
-        }
+        impData = new ImportDataForm();
+        impData.setVisible(true);
     }//GEN-LAST:event_btnManageDataActionPerformed
 
     private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
         try {
-            ExportData data = new ExportData();
-            data.export();
+            //ExportData data = new ExportData();
+            //data.export();
             // Carry out the export. Current guess is:
             // Get the data from the DB; write it to Excel file of some sort.
         }
@@ -178,5 +188,6 @@ public class MainForm extends javax.swing.JFrame   {
     private javax.swing.JButton btnBegin;
     private javax.swing.JButton btnExport;
     private javax.swing.JButton btnManageData;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
