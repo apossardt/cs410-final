@@ -97,6 +97,15 @@ public class ProjectManager implements InstructionFormListener, PassageListener,
         saveSurveyResults(results.glResults);
         
         surveyFrm.dispose();
+        
+        if (passageFrm != null)
+            passageFrm.dispose();
+        if (smsFrm != null)
+            smsFrm.dispose();
+        if (questionFrm != null)
+            questionFrm.dispose();
+        if (instructionsFrm != null)
+            instructionsFrm.dispose();
     }
     
 
