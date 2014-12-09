@@ -112,7 +112,7 @@ public class ExportData {
                    String[] entry = new String[columnCount];
 
                        entry[0] = resultSet.getString(2) + " line:" +resultSet.getString(3);
-                       entry[1] = resultSet.getString(5);
+                       entry[1] = resultSet.getString(5) + " - " + resultSet.getString(1);
                        entry[2] = resultSet.getString(4);
                        message.add(entry);
                }
@@ -129,7 +129,7 @@ public class ExportData {
                    String[] entry = new String[columnCount];
 
                        entry[0] = "Reading Questions| number:" + resultSet.getString(3);
-                       entry[1] = resultSet.getString(2);
+                       entry[1] = resultSet.getString(2) + " - " + resultSet.getString(1);
                        entry[2] = resultSet.getString(6);
                        entry[3] = resultSet.getString(3);
                        entry[4] = resultSet.getString(4);
@@ -165,7 +165,7 @@ public class ExportData {
                {
                    String[] entry = new String[columnCount];
                        entry[0] = "Demographic Questions| number:" + resultSet.getString(3);
-                       entry[1] = resultSet.getString(2);
+                       entry[1] = resultSet.getString(2) + " - " + resultSet.getString(1);
                        entry[3] = resultSet.getString(3);
                        entry[4] = resultSet.getString(5) + "" + resultSet.getString(4);
                        message.add(entry);
