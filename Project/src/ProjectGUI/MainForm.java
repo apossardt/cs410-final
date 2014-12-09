@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package ProjectGUI;
+import java.io.File;
+import java.io.PrintWriter;
+import org.apache.derby.drda.NetworkServerControl;
+import java.net.InetAddress;
 
 /**
  *
@@ -19,6 +23,30 @@ public class MainForm extends javax.swing.JFrame   {
     public MainForm() {
         initComponents();
         projMngr = new ProjectManager();
+        
+        Thread netServer = new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        
+                        File f = new File(System.getProperty("java.class.path"));
+                        File dir = f.getAbsoluteFile().getParentFile();
+ 
+                        String temp =  dir.toString();
+                        
+                        System.setProperty("derby.system.home", getClass().getResource("").getPath());       
+                        NetworkServerControl serverControl=new NetworkServerControl(InetAddress.getByName("localhost"),1527);
+                        
+                        
+                        
+                        serverControl.start(new PrintWriter(System.out,true));
+                    } catch(Exception v) {
+                        System.out.println(v);
+                    }
+                }  
+            };
+
+            netServer.start();
     }
 
 
